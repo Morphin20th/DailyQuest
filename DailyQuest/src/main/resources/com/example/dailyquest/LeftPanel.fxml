@@ -89,28 +89,6 @@
    <center>
       <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="taskPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-               <children>
-                  <HBox prefHeight="70.0" prefWidth="600.0">
-                     <children>
-                        <Label prefHeight="72.0" prefWidth="500.0" text="Додати нове завдання">
-                           <font>
-                              <Font size="32.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#newTask" prefHeight="70.0" prefWidth="100.0" text="+">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <ListView fx:id="taskListView" layoutY="70.0" prefHeight="365.0" prefWidth="600.0" />
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="profilePane" onDragDetected="#editProfileName" prefHeight="425.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <ImageView fx:id="imageView" fitHeight="173.0" fitWidth="162.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
@@ -159,7 +137,31 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="taskPane1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
+            <AnchorPane fx:id="taskPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <HBox prefHeight="70.0" prefWidth="600.0" style="-fx-border-color: #b5b1b0; -fx-border-width: 1px;">
+                     <children>
+                        <Label prefHeight="68.0" prefWidth="470.0" text="Додати нове завдання">
+                           <font>
+                              <Font name="Comic Sans MS" size="32.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Button contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newTask" prefHeight="62.0" prefWidth="70.0" styleClass="buttonPlus" stylesheets="@../../../styling/styling.css" text="+" textAlignment="CENTER">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="taskListView" layoutY="70.0" prefHeight="365.0" prefWidth="600.0" style="-fx-fixed-cell-size: 35;" styleClass="list-cell" stylesheets="@../../../styling/styling.css" />
+               </children>
+            </AnchorPane>
          </children>
       </StackPane>
    </center>
