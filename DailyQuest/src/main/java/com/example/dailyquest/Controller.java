@@ -55,6 +55,34 @@ public class Controller {
     private List<String> taskList = new ArrayList<>();
 
 
+
+    private void updateProgress() {
+        // Вычислить процент выполненных задач
+        double completedTasksPercentage = (double) completedTasksCount() / (double) taskList.size();
+
+        // Обновить индикатор прогресса
+        progressBar.setProgress(completedTasksPercentage);
+    }
+
+    private int completedTasksCount() {
+        int count = 0;
+        // Подсчитать количество выполненных задач в списке задач
+        for (String task : taskList) {
+            // TODO: Проверить, выполнена ли задача
+            // Если выполнена, увеличить счетчик
+            if (isTaskCompleted(task)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private boolean isTaskCompleted(String task) {
+        // TODO: Реализовать этот метод
+        // Проверить, выполнена ли задача
+        // Если выполнена, вернуть true, в противном случае - false
+        return false;
+    }
     public void progresslistener() {
         progressBar.setProgress(0);
         progressBar.progressProperty().addListener((observable, oldValue, newValue) -> {
@@ -124,7 +152,7 @@ public class Controller {
             ObservableList<String> items = FXCollections.observableArrayList(taskList);
             taskListView.setItems(items);
             taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(difficulty));
+            taskListView.setCellFactory(param -> new TaskCell(difficulty,items));
         }
     }
 
@@ -143,57 +171,28 @@ public class Controller {
     public void switchToHabits(ActionEvent event) throws IOException {
 
         tabName.setText("Звички");
-
-        /*Parent root = FXMLLoader.load(getClass().getResource("Habits.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public void switchToProfile(ActionEvent event) throws IOException {
 
         tabName.setText("Профіль");
         profilePane.toFront();
-        /*Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public void switchToQuest(ActionEvent event) throws IOException {
 
         tabName.setText("Завдання");
         taskPane.toFront();
-
-
-        /*Parent root = FXMLLoader.load(getClass().getResource("Quest.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public void switchToAchievements(ActionEvent event) throws IOException {
 
         tabName.setText("Досягнення");
-
-        /*Parent root = FXMLLoader.load(getClass().getResource("Achievements.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public void switchToDaily(ActionEvent event) throws IOException {
 
         tabName.setText("Щоденні справи");
 
-        /*Parent root = FXMLLoader.load(getClass().getResource("Daily.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
-}
+    }
