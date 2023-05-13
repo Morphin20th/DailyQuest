@@ -1,0 +1,37 @@
+.button {
+    -fx-background-color: rgb(252, 238, 227);
+    -fx-background-radius: 0em;
+}
+
+.button:hover {
+    -fx-background-color: rgb(252, 202, 162);
+}
+
+.button:pressed {
+    -fx-background-color: rgb(214, 143, 86);
+}
+
+.button:focused {
+    -fx-background-color: rgb(214, 143, 86);
+    -fx-border-color: rgb(242, 236, 233);
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+.button2 {
+    -fx-background-radius: 5px;
+    -fx-background-color: rgb(235, 178, 152);
+    -fx-border-radius: 5px;
+    -fx-border-width: 0px 2px 1px 0px;
+    -fx-border-color: rgb(122, 96, 84);
+}
+
+.button2: visited {
+    -fx-background-radius: 5px;
+    -fx-background-color: rgb(235, 178, 152);
+    -fx-border-radius: 5px;
+    -fx-border-width: 0px 2px 1px 0px;
+    -fx-border-color: rgb(122, 96, 84);
+}
+
+
+
