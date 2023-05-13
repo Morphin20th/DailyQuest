@@ -21,7 +21,7 @@ public class AddTaskController {
     @FXML
     private ComboBox<String> difficultyComboBox;
 
-//jopas2
+
     private ObservableList<String> difficultyOptions = FXCollections.observableArrayList("Легко", "Нормально", "Складно");
 
     public void initialize() {
