@@ -53,8 +53,7 @@ public class Controller {
 
     private int level = 1;
     private List<String> taskList = new ArrayList<>();
-
-
+    //gfgsfgw
 
     public void progresslistener() {
         progressBar.setProgress(0);
@@ -66,7 +65,7 @@ public class Controller {
             }
         });
     }
-
+//fsdfsd
 
     //ім'я профілю
     @FXML

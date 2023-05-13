@@ -8,13 +8,15 @@ import javafx.scene.text.Text;
 public class TaskCell extends ListCell<String> {
 
     private final Button doneButton;
+    private final Button deleteButton;
     private final Text taskNameText;
     private final String selectedDifficulty;
 
     public TaskCell(String selectedDifficulty) {
         this.selectedDifficulty = selectedDifficulty;
         taskNameText = new Text();
-        doneButton = new Button("Выполнено");
+        doneButton = new Button("Виконано");
+        deleteButton = new Button("Видалити задачу");
 
         doneButton.setOnAction(event -> {
             // Обработка нажатия на кнопку выполнения задания
@@ -23,7 +25,15 @@ public class TaskCell extends ListCell<String> {
             System.out.println("Задание выполнено: " + task);
         });
 
-        HBox hbox = new HBox(taskNameText, doneButton);
+        deleteButton.setOnAction(event -> {
+            // Обработка нажатия на кнопку удаления задачи
+            String task = getItem();
+            // Добавьте здесь код для удаления задачи
+            System.out.println("Задание удалено: " + task);
+        });
+
+        HBox hbox = new HBox(taskNameText, doneButton, deleteButton);
+
         hbox.setSpacing(10);
 
         setGraphic(hbox);
@@ -37,8 +47,11 @@ public class TaskCell extends ListCell<String> {
             setText(null);
             setGraphic(null);
         } else {
-            setText(task + " (" + selectedDifficulty + ")");
-            setGraphic(doneButton);
+            setText(task + "             Cкладність: " + selectedDifficulty);
+            setGraphic(doneButton.getParent());
         }
     }
 }
+
+
+
