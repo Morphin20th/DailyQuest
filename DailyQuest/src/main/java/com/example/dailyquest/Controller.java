@@ -21,21 +21,12 @@ import java.util.List;
 
 public class Controller {
     private Stage stage;
-    private Scene scene;
-    @FXML
-    private SplitPane scenePane;
-    @FXML
-    private StackPane stackPane;
     @FXML
     private BorderPane scenePane1;
     @FXML
     private ListView<Task> taskListView;
     @FXML
     private Label tabName;
-    @FXML
-    private AnchorPane taskPane;
-    @FXML
-    private AnchorPane habitsPane;
     @FXML
     private ImageView imageView;
     @FXML
@@ -48,6 +39,14 @@ public class Controller {
     private Label levelLabel;
     @FXML
     private AnchorPane profilePane;
+    @FXML
+    private AnchorPane achievementsPane;
+    @FXML
+    private AnchorPane taskPane;
+    @FXML
+    private AnchorPane habitsPane;
+    @FXML
+    private AnchorPane dailyPane;
 
 
     private int level = 1;
@@ -130,6 +129,7 @@ public class Controller {
     public void switchToHabits(ActionEvent event) throws IOException {
 
         tabName.setText("Звички");
+        habitsPane.toFront();
     }
 
     public void switchToProfile(ActionEvent event) throws IOException {
@@ -147,12 +147,13 @@ public class Controller {
     public void switchToAchievements(ActionEvent event) throws IOException {
 
         tabName.setText("Досягнення");
+        achievementsPane.toFront();
     }
 
     public void switchToDaily(ActionEvent event) throws IOException {
 
         tabName.setText("Щоденні справи");
-
+        dailyPane.toFront();
     }
 
 
