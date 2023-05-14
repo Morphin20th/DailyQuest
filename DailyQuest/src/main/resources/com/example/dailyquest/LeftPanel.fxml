@@ -149,13 +149,16 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <Button contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newTask" prefHeight="62.0" prefWidth="70.0" styleClass="buttonPlus" stylesheets="@../../../styling/styling.css" text="+" textAlignment="CENTER">
+                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newTask" prefHeight="62.0" prefWidth="70.0" styleClass="buttonPlus" stylesheets="@../../../styling/styling.css" text="+" textAlignment="CENTER">
                            <font>
                               <Font size="31.0" />
                            </font>
                            <HBox.margin>
                               <Insets top="2.0" />
                            </HBox.margin>
+                           <padding>
+                              <Insets bottom="2.0" />
+                           </padding>
                         </Button>
                      </children>
                   </HBox>
