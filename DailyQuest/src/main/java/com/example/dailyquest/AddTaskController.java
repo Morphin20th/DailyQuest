@@ -21,18 +21,20 @@ public class AddTaskController {
     @FXML
     private ComboBox<String> difficultyComboBox;
 
-
     private ObservableList<String> difficultyOptions = FXCollections.observableArrayList("Легко", "Нормально", "Складно");
 
     public void initialize() {
         difficultyComboBox.setItems(difficultyOptions);
     }
-    public String addTaskButton() {
+    public Task addTaskButton() {
         // Получаем значение из поля ввода названия
         String taskName = taskNameTextField.getText();
+        String difficulty = difficultyComboBox.getValue().toString();
+        // Создание нового объекта Task
+        Task newTask = new Task(taskName, difficulty);
 
         // Получаем выбранную сложность
-        String difficulty = difficultyComboBox.getValue();
+
         if (difficulty == null) {
             // Если сложность не выбрана, возвращаем null
             return null;
@@ -42,7 +44,7 @@ public class AddTaskController {
             return null;
         } else {
             stage.close();
-            return taskName;
+            return newTask;
 
 
         }
