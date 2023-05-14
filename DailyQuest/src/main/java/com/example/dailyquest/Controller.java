@@ -2,6 +2,7 @@ package com.example.dailyquest;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,33 +57,7 @@ public class Controller {
 
 
 
-    private void updateProgress() {
-        // Вычислить процент выполненных задач
-        double completedTasksPercentage = (double) completedTasksCount() / (double) taskList.size();
 
-        // Обновить индикатор прогресса
-        progressBar.setProgress(completedTasksPercentage);
-    }
-
-    private int completedTasksCount() {
-        int count = 0;
-        // Подсчитать количество выполненных задач в списке задач
-        for (String task : taskList) {
-            // TODO: Проверить, выполнена ли задача
-            // Если выполнена, увеличить счетчик
-            if (isTaskCompleted(task)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    private boolean isTaskCompleted(String task) {
-        // TODO: Реализовать этот метод
-        // Проверить, выполнена ли задача
-        // Если выполнена, вернуть true, в противном случае - false
-        return false;
-    }
     public void progresslistener() {
         progressBar.setProgress(0);
         progressBar.progressProperty().addListener((observable, oldValue, newValue) -> {
@@ -152,7 +127,7 @@ public class Controller {
             ObservableList<String> items = FXCollections.observableArrayList(taskList);
             taskListView.setItems(items);
             taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(difficulty,items));
+            taskListView.setCellFactory(param -> new TaskCell(difficulty,items,this));
         }
     }
 
@@ -195,4 +170,19 @@ public class Controller {
         tabName.setText("Щоденні справи");
 
     }
+
+
+    public void deleteTask(String taskName) {
+        // Удалить задачу с указанным именем из списка задач
+        taskList.remove(taskName);
+
+        // Обновить интерфейс
+        ObservableList<String> items = FXCollections.observableArrayList(taskList);
+        taskListView.setItems(items);
+        taskListView.refresh();
     }
+
+
+
+
+}
