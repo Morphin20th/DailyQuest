@@ -26,6 +26,8 @@ public class Controller {
     @FXML
     private ListView<Task> taskListView;
     @FXML
+    private ListView<Task> habitListView;
+    @FXML
     private Label tabName;
     @FXML
     private ImageView imageView;
@@ -51,7 +53,7 @@ public class Controller {
 
     private int level = 1;
     private List<Task> taskList = new ArrayList<Task>();
-
+    private List<Task> habitList = new ArrayList<Task>();
     //ім'я профілю
     @FXML
     private void editProfileName(){
@@ -113,6 +115,32 @@ public class Controller {
             taskListView.setCellFactory(param -> new TaskCell(items,this));
         }
     }
+    public void newHabit(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NewHabit.fxml"));
+        Parent root = loader.load();
+
+        //открываем новое окно
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Додати звичку");
+        stage.setScene(scene);
+
+        AddHabitController addHabitController = loader.getController();
+        addHabitController.setStage(stage);
+        stage.showAndWait();
+
+        if (addHabitController.addHabitButton() != null) {  //проверка пустое ли имя
+            // Создаем новое задание и добавляем его в список заданий
+            Task newTask = addHabitController.addHabitButton();
+            habitList.add(newTask);
+
+            // Обновляем интерфейс
+            ObservableList<Task> items = FXCollections.observableArrayList(habitList);
+            habitListView.setItems(items);
+            habitListView.refresh();
+            habitListView.setCellFactory(param -> new HabitCell(items,this));
+        }
+    }
 
     public void Exit(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -167,6 +195,16 @@ public class Controller {
         taskListView.setItems(items);
         taskListView.refresh();
     }
+    public void deleteHabit(Task task) {
+        // Удалить задачу с указанным именем из списка задач
+        habitList.remove(task);
+
+
+        // Обновить интерфейс
+        ObservableList<Task> items = FXCollections.observableArrayList(habitList);
+        habitListView.setItems(items);
+        habitListView.refresh();
+    }
 
     public void addProgress(String difficulty){
 
@@ -182,10 +220,17 @@ public class Controller {
             case "Складно":
                 increment = 0.15;
                 break;
+            case "Позитивна":
+                increment = 0.1;
+                break;
+            case"Негативна":
+                increment = -0.1;
+                break;
             default:
 
                 return;
         }
+
 
 
         // Увеличиваем значение прогрессбара на increment

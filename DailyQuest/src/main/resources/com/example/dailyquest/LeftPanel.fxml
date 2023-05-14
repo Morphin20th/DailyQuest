@@ -117,71 +117,6 @@
                   <ListView fx:id="taskListView" layoutY="70.0" prefHeight="365.0" prefWidth="600.0" style="-fx-fixed-cell-size: 35;" styleClass="list-cell" stylesheets="@../../../styling/styling.css" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dailyPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-               <children>
-                  <HBox prefHeight="70.0" prefWidth="600.0" style="-fx-border-color: #b5b1b0; -fx-border-width: 1px;">
-                     <children>
-                        <Label prefHeight="68.0" prefWidth="470.0" text="Додати щоденну справу">
-                           <font>
-                              <Font name="Comic Sans MS" size="32.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newTask" prefHeight="62.0" prefWidth="70.0" styleClass="buttonPlus" stylesheets="@../../../styling/styling.css" text="+" textAlignment="CENTER">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="2.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets bottom="2.0" />
-                           </padding>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <ListView fx:id="taskListView1" layoutY="70.0" prefHeight="365.0" prefWidth="600.0" style="-fx-fixed-cell-size: 35;" styleClass="list-cell" stylesheets="@../../../styling/styling.css" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="habitsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-               <children>
-                  <HBox prefHeight="70.0" prefWidth="600.0" style="-fx-border-color: #b5b1b0; -fx-border-width: 1px;">
-                     <children>
-                        <Label prefHeight="68.0" prefWidth="470.0" text="Додати нову звичку">
-                           <font>
-                              <Font name="Comic Sans MS" size="32.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newTask" prefHeight="62.0" prefWidth="70.0" styleClass="buttonPlus" stylesheets="@../../../styling/styling.css" text="+" textAlignment="CENTER">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="2.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets bottom="2.0" />
-                           </padding>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <ListView fx:id="taskListView11" layoutY="70.0" prefHeight="365.0" prefWidth="600.0" style="-fx-fixed-cell-size: 35;" styleClass="list-cell" stylesheets="@../../../styling/styling.css" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="achievementsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-               <children>
-                  <Label layoutX="190.0" layoutY="180.0" text="Ваші досягнення">
-                     <font>
-                        <Font size="37.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="profilePane" onDragDetected="#editProfileName" prefHeight="425.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <ImageView fx:id="imageView" fitHeight="173.0" fitWidth="162.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
@@ -228,6 +163,71 @@
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="dailyPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <HBox prefHeight="70.0" prefWidth="600.0" style="-fx-border-color: #b5b1b0; -fx-border-width: 1px;">
+                     <children>
+                        <Label prefHeight="68.0" prefWidth="470.0" text="Додати щоденну справу">
+                           <font>
+                              <Font name="Comic Sans MS" size="32.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newTask" prefHeight="62.0" prefWidth="70.0" styleClass="buttonPlus" stylesheets="@../../../styling/styling.css" text="+" textAlignment="CENTER">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="2.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="taskListView1" layoutY="70.0" prefHeight="365.0" prefWidth="600.0" style="-fx-fixed-cell-size: 35;" styleClass="list-cell" stylesheets="@../../../styling/styling.css" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="achievementsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <Label layoutX="190.0" layoutY="180.0" text="Ваші досягнення">
+                     <font>
+                        <Font size="37.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="habitsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <HBox prefHeight="70.0" prefWidth="600.0" style="-fx-border-color: #b5b1b0; -fx-border-width: 1px;">
+                     <children>
+                        <Label prefHeight="68.0" prefWidth="470.0" text="Додати нову звичку">
+                           <font>
+                              <Font name="Comic Sans MS" size="32.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newHabit" prefHeight="62.0" prefWidth="70.0" styleClass="buttonPlus" stylesheets="@../../../styling/styling.css" text="+" textAlignment="CENTER">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="2.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="habitListView" layoutY="70.0" prefHeight="365.0" prefWidth="600.0" style="-fx-fixed-cell-size: 35;" styleClass="list-cell" stylesheets="@../../../styling/styling.css" />
                </children>
             </AnchorPane>
          </children>

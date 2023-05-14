@@ -8,9 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-public class AddTaskController {
+public class AddHabitController {
     @FXML
-    private TextField taskNameTextField;
+    private TextField habitNameTextField;
 
     private Stage stage;
     public void setStage(Stage stage) {
@@ -19,17 +19,17 @@ public class AddTaskController {
     @FXML
     private ComboBox<String> difficultyComboBox;
 
-    private ObservableList<String> difficultyOptions = FXCollections.observableArrayList("Легко", "Нормально", "Складно");
+    private ObservableList<String> difficultyOptions = FXCollections.observableArrayList("Позитивна", "Негативна");
 
     public void initialize() {
         difficultyComboBox.setItems(difficultyOptions);
     }
-    public Task addTaskButton() {
+    public Task addHabitButton() {
         // Получаем значение из поля ввода названия
-        String taskName = taskNameTextField.getText();
+        String habitName = habitNameTextField.getText();
         String difficulty = difficultyComboBox.getValue().toString();
         // Создание нового объекта Task
-        Task newTask = new Task(taskName, difficulty);
+        Task newTask = new Task(habitName, difficulty);
 
         // Получаем выбранную сложность
 
@@ -38,7 +38,7 @@ public class AddTaskController {
             return null;
         }
 
-        if(taskName.isEmpty()) {
+        if(habitName.isEmpty()) {
             return null;
         } else {
             stage.close();
