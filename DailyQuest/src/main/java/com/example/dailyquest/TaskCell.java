@@ -28,7 +28,11 @@ public class TaskCell extends ListCell<Task> {
         doneButton.setOnAction(event -> {
             Task task = getItem();
             System.out.println("Задание выполнено: " + task.getName());
+            String difficulty = task.getDifficulty();
+            controller.addProgress(difficulty);
         });
+
+
 
         deleteButton.setOnAction(event -> {
             Task task = getItem();

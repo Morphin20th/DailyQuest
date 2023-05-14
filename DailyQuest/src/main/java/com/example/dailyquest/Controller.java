@@ -56,16 +56,8 @@ public class Controller {
 
 
 
-    public void progresslistener() {
-        progressBar.setProgress(0);
-        progressBar.progressProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.doubleValue() == 1.0) {
-                level++;
-                levelLabel.setText("Рівень " + level);
-                progressBar.setProgress(0);
-            }
-        });
-    }
+
+
 
 
     //ім'я профілю
@@ -182,7 +174,47 @@ public class Controller {
         taskListView.refresh();
     }
 
+    public void addProgress(String difficulty){
 
+    double increment = 0.0;
+
+        switch (difficulty) {
+            case "Легко":
+                increment = 0.05;
+                break;
+            case "Нормально":
+                increment = 0.1;
+                break;
+            case "Складно":
+                increment = 0.15;
+                break;
+            default:
+
+                return;
+        }
+
+
+        // Увеличиваем значение прогрессбара на increment
+        progressBar.setProgress(progressBar.getProgress() + increment);
+
+        if (progressBar.getProgress() >= 1.0) {
+            // Сбрасываем значение прогрессбара
+            progressBar.setProgress(0.0);
+
+            // Увеличиваем уровень
+            level++;
+            levelLabel.setText("Рівень " + level);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Новий рівень!");
+            alert.setHeaderText("Вітаю з досягненнням " + level +"-го рівня");
+
+            if(alert.showAndWait().get() == ButtonType.OK) {
+                stage =(Stage) scenePane1.getScene().getWindow();
+                stage.close();
+            }
+
+        }
+    }
 
 
 }
