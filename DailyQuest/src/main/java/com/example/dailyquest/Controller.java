@@ -2,11 +2,9 @@ package com.example.dailyquest;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -31,7 +29,7 @@ public class Controller {
     @FXML
     private BorderPane scenePane1;
     @FXML
-    private ListView<String> taskListView;
+    private ListView<Task> taskListView;
     @FXML
     private Label tabName;
     @FXML
@@ -53,7 +51,7 @@ public class Controller {
 
 
     private int level = 1;
-    private List<String> taskList = new ArrayList<>();
+    private List<Task> taskList = new ArrayList<Task>();
 
 
 
@@ -121,13 +119,14 @@ public class Controller {
 
         if (addTaskController.addTaskButton() != null) {  //проверка пустое ли имя
             // Создаем новое задание и добавляем его в список заданий
-            taskList.add(addTaskController.addTaskButton());
-            String difficulty=addTaskController.diff();
+            Task newTask = addTaskController.addTaskButton();
+            taskList.add(newTask);
+
             // Обновляем интерфейс
-            ObservableList<String> items = FXCollections.observableArrayList(taskList);
+            ObservableList<Task> items = FXCollections.observableArrayList(taskList);
             taskListView.setItems(items);
             taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(difficulty,items,this));
+            taskListView.setCellFactory(param -> new TaskCell(items,this));
         }
     }
 
@@ -172,12 +171,13 @@ public class Controller {
     }
 
 
-    public void deleteTask(String taskName) {
+    public void deleteTask(Task task) {
         // Удалить задачу с указанным именем из списка задач
-        taskList.remove(taskName);
+        taskList.remove(task);
+
 
         // Обновить интерфейс
-        ObservableList<String> items = FXCollections.observableArrayList(taskList);
+        ObservableList<Task> items = FXCollections.observableArrayList(taskList);
         taskListView.setItems(items);
         taskListView.refresh();
     }
