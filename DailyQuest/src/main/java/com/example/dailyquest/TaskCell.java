@@ -60,6 +60,7 @@ public class TaskCell extends ListCell<Task> {
             bonusLabel.setVisible(true);
             fadeTransition.setFromValue(1);
             fadeTransition.playFromStart();
+            doneButton.setDisable(true);
         });
 
         deleteButton.setOnAction(event -> {
