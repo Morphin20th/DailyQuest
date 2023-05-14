@@ -2,6 +2,7 @@ package com.example.dailyquest;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +54,9 @@ public class Controller {
 
     private int level = 1;
     private List<String> taskList = new ArrayList<>();
-    //gfgsfgw
+
+
+
 
     public void progresslistener() {
         progressBar.setProgress(0);
@@ -65,7 +68,7 @@ public class Controller {
             }
         });
     }
-//fsdfsd
+
 
     //ім'я профілю
     @FXML
@@ -124,7 +127,7 @@ public class Controller {
             ObservableList<String> items = FXCollections.observableArrayList(taskList);
             taskListView.setItems(items);
             taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(difficulty));
+            taskListView.setCellFactory(param -> new TaskCell(difficulty,items,this));
         }
     }
 
@@ -143,57 +146,43 @@ public class Controller {
     public void switchToHabits(ActionEvent event) throws IOException {
 
         tabName.setText("Звички");
-
-        /*Parent root = FXMLLoader.load(getClass().getResource("Habits.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public void switchToProfile(ActionEvent event) throws IOException {
 
         tabName.setText("Профіль");
         profilePane.toFront();
-        /*Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public void switchToQuest(ActionEvent event) throws IOException {
 
         tabName.setText("Завдання");
         taskPane.toFront();
-
-
-        /*Parent root = FXMLLoader.load(getClass().getResource("Quest.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public void switchToAchievements(ActionEvent event) throws IOException {
 
         tabName.setText("Досягнення");
-
-        /*Parent root = FXMLLoader.load(getClass().getResource("Achievements.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
 
     public void switchToDaily(ActionEvent event) throws IOException {
 
         tabName.setText("Щоденні справи");
 
-        /*Parent root = FXMLLoader.load(getClass().getResource("Daily.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
     }
+
+
+    public void deleteTask(String taskName) {
+        // Удалить задачу с указанным именем из списка задач
+        taskList.remove(taskName);
+
+        // Обновить интерфейс
+        ObservableList<String> items = FXCollections.observableArrayList(taskList);
+        taskListView.setItems(items);
+        taskListView.refresh();
+    }
+
+
+
+
 }

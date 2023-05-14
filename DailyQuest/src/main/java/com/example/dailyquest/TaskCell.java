@@ -1,5 +1,7 @@
 package com.example.dailyquest;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
@@ -11,10 +13,16 @@ public class TaskCell extends ListCell<String> {
     private final Button deleteButton;
     private final Text taskNameText;
     private final String selectedDifficulty;
+    private final ObservableList<String> taskList;
+    private Controller controller;
 
-    public TaskCell(String selectedDifficulty) {
+
+    public TaskCell(String selectedDifficulty,ObservableList<String> taskList, Controller controller) {
         this.selectedDifficulty = selectedDifficulty;
-        taskNameText = new Text();
+        this.taskList = taskList;
+        this.controller = controller;
+
+    taskNameText = new Text();
         doneButton = new Button("Виконано");
         deleteButton = new Button("Видалити задачу");
 
@@ -25,12 +33,13 @@ public class TaskCell extends ListCell<String> {
             System.out.println("Задание выполнено: " + task);
         });
 
+
         deleteButton.setOnAction(event -> {
-            // Обработка нажатия на кнопку удаления задачи
             String task = getItem();
-            // Добавьте здесь код для удаления задачи
-            System.out.println("Задание удалено: " + task);
+            controller.deleteTask(task);
         });
+
+
 
         HBox hbox = new HBox(taskNameText, doneButton, deleteButton);
 
@@ -52,6 +61,9 @@ public class TaskCell extends ListCell<String> {
         }
     }
 }
+
+
+
 
 
 
