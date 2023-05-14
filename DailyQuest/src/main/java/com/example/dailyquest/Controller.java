@@ -53,13 +53,6 @@ public class Controller {
     private int level = 1;
     private List<Task> taskList = new ArrayList<Task>();
 
-
-
-
-
-
-
-
     //ім'я профілю
     @FXML
     private void editProfileName(){
@@ -210,7 +203,6 @@ public class Controller {
 
             if(alert.showAndWait().get() == ButtonType.OK) {
                 stage =(Stage) scenePane1.getScene().getWindow();
-                stage.close();
             }
 
         }
