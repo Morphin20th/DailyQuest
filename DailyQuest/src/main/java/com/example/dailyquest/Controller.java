@@ -27,43 +27,28 @@ import java.util.List;
 
 public class Controller {
     private Stage stage;
-    @FXML
-    private BorderPane scenePane1;
-    @FXML
-    private Label tabName;
-    @FXML
-    private ImageView imageView;
-    @FXML
-    private TextField profileNameField;
+    @FXML private BorderPane scenePane1;
+    @FXML private Label tabName;
+    @FXML private ImageView imageView;
+    @FXML private TextField profileNameField;
     @FXML private Label profileNameLabel;
-    @FXML
-    private ProgressBar progressBar;
-    @FXML
-    private Label levelLabel;
-    @FXML
-    private AnchorPane profilePane;
-    @FXML
-    private AnchorPane achievementsPane;
-    @FXML
-    private AnchorPane taskPane;
-    @FXML
-    private AnchorPane habitsPane;
-    @FXML
-    private AnchorPane dailyPane;
-    @FXML
-    private ListView<Task> taskListView;
-    @FXML
-    private ListView<Task> habitListView;
-    @FXML
-    private ListView<Task> dailyListView;
+    @FXML private ProgressBar progressBar;
+    @FXML private Label levelLabel;
+    @FXML private AnchorPane profilePane;
+    @FXML private AnchorPane achievementsPane;
+    @FXML private AnchorPane taskPane;
+    @FXML private AnchorPane habitsPane;
+    @FXML private AnchorPane dailyPane;
+    @FXML private ListView<Task> taskListView;
+    @FXML private ListView<Task> habitListView;
+    @FXML private ListView<Task> dailyListView;
 
 
     private int level = 1;
     private List<Task> taskList = new ArrayList<Task>();
     private List<Task> habitList = new ArrayList<Task>();
     private List<Task> dailyList = new ArrayList<Task>();
-    @FXML
-    private void editProfileName(){
+    @FXML private void editProfileName(){
         String newProfileName = profileNameField.getText();
         if (newProfileName.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -74,8 +59,7 @@ public class Controller {
             profileNameLabel.setText(newProfileName);
         }
     }
-    @FXML
-    private void ChooseImage() {
+    @FXML private void ChooseImage() {
         // Создание диалогового окна выбора файла
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Оберіть зображення");
