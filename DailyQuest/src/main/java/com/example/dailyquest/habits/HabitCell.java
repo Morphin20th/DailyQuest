@@ -44,6 +44,10 @@ public class HabitCell extends ListCell<Task> {
         doneButton.setOnAction(event -> {
             Task habit = getItem();
             System.out.println("Задание выполнено: " + habit.getName());
+
+            // Устанавливаем статус выполнения задачи
+            habit.setCompleted(true);
+
             String difficulty = habit.getDifficulty();
             controller.addProgress(difficulty);
 
@@ -60,6 +64,8 @@ public class HabitCell extends ListCell<Task> {
             bonusLabel.setVisible(true);
             fadeTransition.setFromValue(1);
             fadeTransition.playFromStart();
+
+            System.out.println("Завдання виконано? : "+ habit.isCompleted());
         });
 
         deleteButton.setOnAction(event -> {

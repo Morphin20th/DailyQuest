@@ -247,8 +247,14 @@ public class Controller {
             default:
                 return;
         }
+
+
+
         // Увеличиваем значение прогрессбара на increment
         progressBar.setProgress(progressBar.getProgress() + increment);
+        // если опыт меньше 0
+        if(progressBar.getProgress()<0)  {progressBar.setProgress(0);}
+
 
         if (progressBar.getProgress() >= 1.0) {
             // Сбрасываем значение прогрессбара
@@ -291,7 +297,4 @@ public class Controller {
             progressBar.setProgress(newProgress);
         }
     }
-
-
-
 }

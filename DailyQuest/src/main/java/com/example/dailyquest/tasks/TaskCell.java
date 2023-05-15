@@ -47,6 +47,10 @@ public class TaskCell extends ListCell<Task> {
         doneButton.setOnAction(event -> {
             Task task = getItem();
             System.out.println("Задание выполнено: " + task.getName());
+
+            // Устанавливаем статус выполнения задачи
+            task.setCompleted(true);
+
             String difficulty = task.getDifficulty();
             controller.addProgress(difficulty);
             String bonus = "";
@@ -65,6 +69,8 @@ public class TaskCell extends ListCell<Task> {
             fadeTransition.setFromValue(1);
             fadeTransition.playFromStart();
             doneButton.setDisable(true);
+
+            System.out.println("Завдання виконано? : "+ task.isCompleted());
         });
 
         deleteButton.setOnAction(event -> {
