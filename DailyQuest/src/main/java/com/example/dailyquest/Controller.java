@@ -1,5 +1,11 @@
 package com.example.dailyquest;
 
+import com.example.dailyquest.daily.AddDailyController;
+import com.example.dailyquest.daily.DailyCell;
+import com.example.dailyquest.habits.HabitCell;
+import com.example.dailyquest.habits.AddHabitController;
+import com.example.dailyquest.tasks.AddTaskController;
+import com.example.dailyquest.tasks.TaskCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,10 +30,6 @@ public class Controller {
     @FXML
     private BorderPane scenePane1;
     @FXML
-    private ListView<Task> taskListView;
-    @FXML
-    private ListView<Task> habitListView;
-    @FXML
     private Label tabName;
     @FXML
     private ImageView imageView;
@@ -49,12 +51,18 @@ public class Controller {
     private AnchorPane habitsPane;
     @FXML
     private AnchorPane dailyPane;
+    @FXML
+    private ListView<Task> taskListView;
+    @FXML
+    private ListView<Task> habitListView;
+    @FXML
+    private ListView<Task> dailyListView;
 
 
     private int level = 1;
     private List<Task> taskList = new ArrayList<Task>();
     private List<Task> habitList = new ArrayList<Task>();
-    //ім'я профілю
+    private List<Task> dailyList = new ArrayList<Task>();
     @FXML
     private void editProfileName(){
         String newProfileName = profileNameField.getText();
@@ -67,9 +75,6 @@ public class Controller {
             profileNameLabel.setText(newProfileName);
         }
     }
-
-
-    //фото профілю
     @FXML
     private void ChooseImage() {
         // Создание диалогового окна выбора файла
@@ -141,6 +146,32 @@ public class Controller {
             habitListView.setCellFactory(param -> new HabitCell(items,this));
         }
     }
+    public void newDaily(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NewDaily.fxml"));
+        Parent root = loader.load();
+
+        //открываем новое окно
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Додати звичку");
+        stage.setScene(scene);
+
+        AddDailyController addDailyController = loader.getController();
+        addDailyController.setStage(stage);
+        stage.showAndWait();
+
+        if (addDailyController.addDailyButton() != null) {  //проверка пустое ли имя
+            // Создаем новое задание и добавляем его в список заданий
+            Task newTask = addDailyController.addDailyButton();
+            dailyList.add(newTask);
+
+            // Обновляем интерфейс
+            ObservableList<Task> items = FXCollections.observableArrayList(dailyList);
+            dailyListView.setItems(items);
+            dailyListView.refresh();
+            dailyListView.setCellFactory(param -> new DailyCell(items,this));
+        }
+    }
 
     public void Exit(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -153,37 +184,31 @@ public class Controller {
             stage.close();
         }
     }
-
     public void switchToHabits(ActionEvent event) throws IOException {
 
         tabName.setText("Звички");
         habitsPane.toFront();
     }
-
     public void switchToProfile(ActionEvent event) throws IOException {
 
         tabName.setText("Профіль");
         profilePane.toFront();
     }
-
     public void switchToQuest(ActionEvent event) throws IOException {
 
         tabName.setText("Завдання");
         taskPane.toFront();
     }
-
     public void switchToAchievements(ActionEvent event) throws IOException {
 
         tabName.setText("Досягнення");
         achievementsPane.toFront();
     }
-
     public void switchToDaily(ActionEvent event) throws IOException {
 
         tabName.setText("Щоденні справи");
         dailyPane.toFront();
     }
-
 
     public void deleteTask(Task task) {
         // Удалить задачу с указанным именем из списка задач
@@ -205,7 +230,16 @@ public class Controller {
         habitListView.setItems(items);
         habitListView.refresh();
     }
+    public void deleteDaily(Task task) {
+        // Удалить задачу с указанным именем из списка задач
+        dailyList.remove(task);
 
+
+        // Обновить интерфейс
+        ObservableList<Task> items = FXCollections.observableArrayList(dailyList);
+        dailyListView.setItems(items);
+        dailyListView.refresh();
+    }
     public void addProgress(String difficulty){
 
     double increment = 0.0;

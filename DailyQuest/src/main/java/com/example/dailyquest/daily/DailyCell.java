@@ -1,5 +1,7 @@
-package com.example.dailyquest;
+package com.example.dailyquest.daily;
 
+import com.example.dailyquest.Controller;
+import com.example.dailyquest.Task;
 import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -9,24 +11,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class HabitCell extends ListCell<Task> {
-
+public class DailyCell extends ListCell<Task> {
     private final Button doneButton;
     private final Button deleteButton;
-    private final Text habitNameText;
-    private final Text habitDifficultyText;
-    private final ObservableList<Task> habitList;
+    private final Text dailyNameText;
+    private final Text dailyDifficultyText;
+    private final ObservableList<Task> dailyList;
     private Controller controller;
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
 
-    public HabitCell(ObservableList<Task> habitList, Controller controller) {
-        this.habitList = habitList;
+    public DailyCell(ObservableList<Task> dailyList, Controller controller) {
+        this.dailyList = dailyList;
         this.controller = controller;
 
-        habitNameText = new Text();
-        habitDifficultyText = new Text();
+        dailyNameText = new Text();
+        dailyDifficultyText = new Text();
 
         doneButton = new Button("Виконано");
         deleteButton = new Button("Видалити задачу");
@@ -40,9 +41,9 @@ public class HabitCell extends ListCell<Task> {
         fadeTransition.setToValue(0);
 
         doneButton.setOnAction(event -> {
-            Task habit = getItem();
-            System.out.println("Задание выполнено: " + habit.getName());
-            String difficulty = habit.getDifficulty();
+            Task daily = getItem();
+            System.out.println("Задание выполнено: " + daily.getName());
+            String difficulty = daily.getDifficulty();
             controller.addProgress(difficulty);
 
             String bonus = "";
@@ -61,38 +62,38 @@ public class HabitCell extends ListCell<Task> {
         });
 
         deleteButton.setOnAction(event -> {
-            Task habit = getItem();
-            controller.deleteHabit(habit);
-            habitList.remove(habit);
+            Task daily = getItem();
+            controller.deleteDaily(daily);
+            dailyList.remove(daily);
         });
 
-        HBox hbox = new HBox(habitNameText, habitDifficultyText, doneButton, deleteButton);
+        HBox hbox = new HBox(dailyNameText, dailyDifficultyText, doneButton, deleteButton);
         hbox.setSpacing(10);
 
         setGraphic(new HBox(hbox, bonusLabel));
     }
 
     @Override
-    protected void updateItem(Task habit, boolean empty) {
-        super.updateItem(habit, empty);
+    protected void updateItem(Task daily, boolean empty) {
+        super.updateItem(daily, empty);
 
-        if (empty || habit == null) {
+        if (empty || daily == null) {
             setText(null);
             setGraphic(null);
         } else {
-            habitNameText.setWrappingWidth(230);
-            habitDifficultyText.setWrappingWidth(130);
-            habitNameText.setText(habit.getName());
-            habitDifficultyText.setText("Якість: " + getSelectedDifficulty(habit));
+            dailyNameText.setWrappingWidth(230);
+            dailyDifficultyText.setWrappingWidth(130);
+            dailyNameText.setText(daily.getName());
+            dailyDifficultyText.setText("Якість: " + getSelectedDifficulty(daily));
             setText(null);
-            setGraphic(new HBox(habitNameText, habitDifficultyText, doneButton, deleteButton, bonusLabel));
+            setGraphic(new HBox(dailyNameText, dailyDifficultyText, doneButton, deleteButton, bonusLabel));
         }
 
     }
 
-    private String getSelectedDifficulty(Task habit) {
-        for (Task t : habitList) {
-            if (t.getName().equals(habit.getName())) {
+    private String getSelectedDifficulty(Task daily) {
+        for (Task t : dailyList) {
+            if (t.getName().equals(daily.getName())) {
                 return t.getDifficulty();
             }
         }

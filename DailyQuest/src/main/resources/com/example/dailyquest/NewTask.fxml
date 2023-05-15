@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scenePane" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dailyquest.AddTaskController">
+<AnchorPane fx:id="scenePane" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dailyquest.tasks.AddTaskController">
     <children>
         <Label alignment="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="400.0" text="Нове завдання">
          <font>

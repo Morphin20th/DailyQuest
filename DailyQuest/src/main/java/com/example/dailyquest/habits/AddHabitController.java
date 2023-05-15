@@ -1,5 +1,6 @@
-package com.example.dailyquest;
+package com.example.dailyquest.habits;
 
+import com.example.dailyquest.Task;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

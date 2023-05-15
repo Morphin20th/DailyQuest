@@ -1,5 +1,7 @@
-package com.example.dailyquest;
+package com.example.dailyquest.habits;
 
+import com.example.dailyquest.Controller;
+import com.example.dailyquest.Task;
 import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -9,24 +11,24 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class TaskCell extends ListCell<Task> {
+public class HabitCell extends ListCell<Task> {
 
     private final Button doneButton;
     private final Button deleteButton;
-    private final Text taskNameText;
-    private final Text taskDifficultyText;
-    private final ObservableList<Task> taskList;
+    private final Text habitNameText;
+    private final Text habitDifficultyText;
+    private final ObservableList<Task> habitList;
     private Controller controller;
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
 
-    public TaskCell(ObservableList<Task> taskList, Controller controller) {
-        this.taskList = taskList;
+    public HabitCell(ObservableList<Task> habitList, Controller controller) {
+        this.habitList = habitList;
         this.controller = controller;
 
-        taskNameText = new Text();
-        taskDifficultyText = new Text();
+        habitNameText = new Text();
+        habitDifficultyText = new Text();
 
         doneButton = new Button("Виконано");
         deleteButton = new Button("Видалити задачу");
@@ -40,18 +42,16 @@ public class TaskCell extends ListCell<Task> {
         fadeTransition.setToValue(0);
 
         doneButton.setOnAction(event -> {
-            Task task = getItem();
-            System.out.println("Задание выполнено: " + task.getName());
-            String difficulty = task.getDifficulty();
+            Task habit = getItem();
+            System.out.println("Задание выполнено: " + habit.getName());
+            String difficulty = habit.getDifficulty();
             controller.addProgress(difficulty);
 
             String bonus = "";
-            if (difficulty.equals("Легко")) {
-                bonus = "+5";
-            } else if (difficulty.equals("Нормально")) {
+            if (difficulty.equals("Позитивна")) {
                 bonus = "+10";
-            } else if (difficulty.equals("Складно")) {
-                bonus = "+15";
+            } else if (difficulty.equals("Негативна")) {
+                bonus = "-10";
             }
 
             bonusLabel.setText(bonus);
@@ -60,42 +60,41 @@ public class TaskCell extends ListCell<Task> {
             bonusLabel.setVisible(true);
             fadeTransition.setFromValue(1);
             fadeTransition.playFromStart();
-            doneButton.setDisable(true);
         });
 
         deleteButton.setOnAction(event -> {
-            Task task = getItem();
-            controller.deleteTask(task);
-            taskList.remove(task);
+            Task habit = getItem();
+            controller.deleteHabit(habit);
+            habitList.remove(habit);
         });
 
-        HBox hbox = new HBox(taskNameText, taskDifficultyText, doneButton, deleteButton);
+        HBox hbox = new HBox(habitNameText, habitDifficultyText, doneButton, deleteButton);
         hbox.setSpacing(10);
 
         setGraphic(new HBox(hbox, bonusLabel));
     }
 
     @Override
-    protected void updateItem(Task task, boolean empty) {
-        super.updateItem(task, empty);
+    protected void updateItem(Task habit, boolean empty) {
+        super.updateItem(habit, empty);
 
-        if (empty || task == null) {
+        if (empty || habit == null) {
             setText(null);
             setGraphic(null);
         } else {
-            taskNameText.setWrappingWidth(230);
-            taskDifficultyText.setWrappingWidth(130);
-            taskNameText.setText(task.getName());
-            taskDifficultyText.setText("Cкладність: " + getSelectedDifficulty(task));
+            habitNameText.setWrappingWidth(230);
+            habitDifficultyText.setWrappingWidth(130);
+            habitNameText.setText(habit.getName());
+            habitDifficultyText.setText("Якість: " + getSelectedDifficulty(habit));
             setText(null);
-            setGraphic(new HBox(taskNameText, taskDifficultyText, doneButton, deleteButton, bonusLabel));
+            setGraphic(new HBox(habitNameText, habitDifficultyText, doneButton, deleteButton, bonusLabel));
         }
 
     }
 
-    private String getSelectedDifficulty(Task task) {
-        for (Task t : taskList) {
-            if (t.getName().equals(task.getName())) {
+    private String getSelectedDifficulty(Task habit) {
+        for (Task t : habitList) {
+            if (t.getName().equals(habit.getName())) {
                 return t.getDifficulty();
             }
         }
