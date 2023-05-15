@@ -1,6 +1,7 @@
 .button {
     -fx-background-color: rgb(252, 238, 227);
     -fx-background-radius: 0em;
+   /*   -fx-font-family: url('fonts/Aqum 2 Classic.otf'); */
 }
 
 .button:hover {
@@ -52,4 +53,19 @@
     -fx-background-color: rgb(222, 170, 142);
     -fx-text-fill: white;
     -fx-border-radius: 5px;
+}
+
+.done-button {
+    /* Стили для кнопки "Виконано" */
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.delete-button {
+    /* Стили для кнопки "Видалити задачу" */
+    -fx-background-radius: 5px;
+}
+
+.text-font {
+   /* -fx-font-family: url('fonts/Aqum 2 Classic.otf');  */
 }

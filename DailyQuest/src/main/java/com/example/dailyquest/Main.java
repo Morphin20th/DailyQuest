@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -27,6 +28,8 @@ public class Main extends Application {
         Scene Profile = new Scene(root);
         stage.initStyle(StageStyle.UNDECORATED);
 
+        stage.setTitle("DailyQuest");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/pics/logo.png")));
         //перемещение окна мышкой
         root.setOnMousePressed(evt -> {
             x=evt.getSceneX();

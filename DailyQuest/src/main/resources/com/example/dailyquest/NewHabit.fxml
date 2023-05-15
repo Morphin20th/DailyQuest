@@ -7,25 +7,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scenePane" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dailyquest.habits.AddHabitController">
+<AnchorPane fx:id="scenePane" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #F7F5F1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dailyquest.habits.AddHabitController">
     <children>
-        <Label alignment="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="400.0" text="Нове завдання">
+        <Label alignment="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="400.0" text="Нова звичка">
             <font>
-                <Font size="18.0" />
+                <Font name="Comic Sans MS" size="18.0" />
             </font></Label>
         <Label layoutX="14.0" layoutY="44.0" text="Назва завдання:">
             <font>
-                <Font size="17.0" />
+                <Font name="Comic Sans MS" size="18.0" />
             </font></Label>
         <TextField fx:id="habitNameTextField" layoutX="160.0" layoutY="45.0" prefHeight="25.0" prefWidth="226.0" />
         <Label layoutX="14.0" layoutY="89.0" text="Рівень складності:">
             <font>
-                <Font size="17.0" />
+                <Font name="Comic Sans MS" size="18.0" />
             </font></Label>
-        <ComboBox fx:id="difficultyComboBox" layoutX="160.0" layoutY="89.0" prefHeight="25.0" prefWidth="226.0" />
-        <Button fx:id="addHabitButton" layoutX="14.0" layoutY="148.0" mnemonicParsing="false" onAction="#addHabitButton" text="Додати">
+        <ComboBox fx:id="difficultyComboBox" layoutX="177.0" layoutY="89.0" prefHeight="25.0" prefWidth="209.0" />
+        <Button fx:id="addHabitButton" layoutX="14.0" layoutY="148.0" mnemonicParsing="false" onAction="#addHabitButton" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Додати">
             <font>
-                <Font size="17.0" />
+                <Font name="Comic Sans MS" size="18.0" />
             </font></Button>
     </children>
 </AnchorPane>
