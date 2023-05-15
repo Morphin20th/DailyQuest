@@ -35,8 +35,7 @@ public class Controller {
     private ImageView imageView;
     @FXML
     private TextField profileNameField;
-    @FXML
-    private Label profileNameLabel;
+    @FXML private Label profileNameLabel;
     @FXML
     private ProgressBar progressBar;
     @FXML
