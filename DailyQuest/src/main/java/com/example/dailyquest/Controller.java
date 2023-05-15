@@ -197,12 +197,11 @@ public class Controller {
     public void deleteTask(Task task) {
         // Удалить задачу с указанным именем из списка задач
         taskList.remove(task);
-
-
         // Обновить интерфейс
         ObservableList<Task> items = FXCollections.observableArrayList(taskList);
         taskListView.setItems(items);
         taskListView.refresh();
+
     }
     public void deleteHabit(Task task) {
         // Удалить задачу с указанным именем из списка задач

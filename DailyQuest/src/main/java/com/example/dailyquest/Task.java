@@ -19,8 +19,22 @@ public class Task {
         return difficulty;
     }
 
-    public boolean isCompleted() {return isCompleted;}
+    public boolean isCompleted() {
+        return isCompleted;
+    }
 
-    public void setCompleted(boolean completed) {isCompleted = completed;}
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+    }
+
+    // Добавляем геттер для цвета HBox в зависимости от статуса выполнения задачи
+    public String getHBoxColor() {
+        if (isCompleted) {
+            return "-fx-background-color: rgb(222, 245, 191);";
+        } else {
+            return "";
+        }
+    }
 }
+
 
