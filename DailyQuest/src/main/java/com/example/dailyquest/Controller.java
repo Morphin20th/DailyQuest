@@ -2,6 +2,7 @@ package com.example.dailyquest;
 
 import com.example.dailyquest.daily.AddDailyController;
 import com.example.dailyquest.daily.DailyCell;
+import com.example.dailyquest.daily.Daily;
 import com.example.dailyquest.habits.HabitCell;
 import com.example.dailyquest.habits.AddHabitController;
 import com.example.dailyquest.tasks.AddTaskController;
@@ -17,7 +18,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -42,14 +42,13 @@ public class Controller {
     @FXML private AnchorPane dailyPane;
     @FXML private ListView<Task> taskListView;
     @FXML private ListView<Task> habitListView;
-    @FXML private ListView<Task> dailyListView;
-    @FXML private HBox tabColor;
+    @FXML private ListView<Daily> dailyListView;
 
 
     private int level = 1;
     private List<Task> taskList = new ArrayList<Task>();
     private List<Task> habitList = new ArrayList<Task>();
-    private List<Task> dailyList = new ArrayList<Task>();
+    private List<Daily> dailyList = new ArrayList<Daily>();
     @FXML private void editProfileName(){
         String newProfileName = profileNameField.getText();
         if (newProfileName.isEmpty()) {
@@ -90,7 +89,6 @@ public class Controller {
         stage.setScene(scene);
 
         AddTaskController addTaskController = loader.getController();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/pics/logo.png")));
         addTaskController.setStage(stage);
         stage.showAndWait();
 
@@ -117,7 +115,6 @@ public class Controller {
         stage.setScene(scene);
 
         AddHabitController addHabitController = loader.getController();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/pics/logo.png")));
         addHabitController.setStage(stage);
         stage.showAndWait();
 
@@ -144,17 +141,16 @@ public class Controller {
         stage.setScene(scene);
 
         AddDailyController addDailyController = loader.getController();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/pics/logo.png")));
         addDailyController.setStage(stage);
         stage.showAndWait();
 
         if (addDailyController.addDailyButton() != null) {  //проверка пустое ли имя
             // Создаем новое задание и добавляем его в список заданий
-            Task newTask = addDailyController.addDailyButton();
-            dailyList.add(newTask);
+            Daily newDaily = addDailyController.addDailyButton();
+            dailyList.add(newDaily);
 
             // Обновляем интерфейс
-            ObservableList<Task> items = FXCollections.observableArrayList(dailyList);
+            ObservableList<Daily> items = FXCollections.observableArrayList(dailyList);
             dailyListView.setItems(items);
             dailyListView.refresh();
             dailyListView.setCellFactory(param -> new DailyCell(items,this));
@@ -176,35 +172,26 @@ public class Controller {
 
         tabName.setText("Звички");
         habitsPane.toFront();
-        tabColor.setBackground(new Background(new BackgroundFill(Color.rgb(154, 61, 28), null, null)));
-
     }
     public void switchToProfile(ActionEvent event) throws IOException {
 
         tabName.setText("Профіль");
         profilePane.toFront();
-        tabColor.setBackground(new Background(new BackgroundFill(Color.rgb(142, 68, 41), null, null)));
     }
     public void switchToQuest(ActionEvent event) throws IOException {
 
         tabName.setText("Завдання");
         taskPane.toFront();
-        tabColor.setBackground(new Background(new BackgroundFill(Color.rgb(147, 106, 65), null, null)));
-
     }
     public void switchToAchievements(ActionEvent event) throws IOException {
 
         tabName.setText("Досягнення");
         achievementsPane.toFront();
-        tabColor.setBackground(new Background(new BackgroundFill(Color.rgb(121, 76, 63), null, null)));
-
     }
     public void switchToDaily(ActionEvent event) throws IOException {
 
         tabName.setText("Щоденні справи");
         dailyPane.toFront();
-        tabColor.setBackground(new Background(new BackgroundFill(Color.rgb(119, 79, 64), null, null)));
-
     }
 
     public void deleteTask(Task task) {
@@ -227,13 +214,13 @@ public class Controller {
         habitListView.setItems(items);
         habitListView.refresh();
     }
-    public void deleteDaily(Task task) {
+    public void deleteDaily(Daily task) {
         // Удалить задачу с указанным именем из списка задач
         dailyList.remove(task);
 
 
         // Обновить интерфейс
-        ObservableList<Task> items = FXCollections.observableArrayList(dailyList);
+        ObservableList<Daily> items = FXCollections.observableArrayList(dailyList);
         dailyListView.setItems(items);
         dailyListView.refresh();
     }
@@ -258,12 +245,8 @@ public class Controller {
                 increment = -0.1;
                 break;
             default:
-
                 return;
         }
-
-
-
         // Увеличиваем значение прогрессбара на increment
         progressBar.setProgress(progressBar.getProgress() + increment);
 
@@ -284,4 +267,31 @@ public class Controller {
 
         }
     }
+    public void addProgressByPercent(double percent) {
+        double currentProgress = progressBar.getProgress();
+        double newProgress = currentProgress + (percent / 100.0);
+
+        if (newProgress >= 1.0) {
+            // Если новый прогресс больше или равен 1.0, то сбрасываем значение прогрессбара
+            progressBar.setProgress(0.0);
+
+            // Увеличиваем уровень
+            level++;
+            levelLabel.setText("Рівень " + level);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Новий рівень!");
+            alert.setHeaderText("Вітаю з досягненнням " + level +"-го рівня");
+
+            if(alert.showAndWait().get() == ButtonType.OK) {
+                stage =(Stage) scenePane1.getScene().getWindow();
+            }
+
+        } else {
+            // Иначе устанавливаем новое значение прогрессбара
+            progressBar.setProgress(newProgress);
+        }
+    }
+
+
+
 }

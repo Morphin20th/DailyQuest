@@ -11,23 +11,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class DailyCell extends ListCell<Task> {
+public class DailyCell extends ListCell<Daily> {
     private final Button doneButton;
     private final Button deleteButton;
     private final Text dailyNameText;
-    private final Text dailyDifficultyText;
-    private final ObservableList<Task> dailyList;
+    private final ObservableList<Daily> dailyList;
     private Controller controller;
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
 
-    public DailyCell(ObservableList<Task> dailyList, Controller controller) {
+    public DailyCell(ObservableList<Daily> dailyList, Controller controller) {
         this.dailyList = dailyList;
         this.controller = controller;
 
         dailyNameText = new Text();
-        dailyDifficultyText = new Text();
 
         doneButton = new Button("Виконано");
         deleteButton = new Button("Видалити задачу");
@@ -41,19 +39,11 @@ public class DailyCell extends ListCell<Task> {
         fadeTransition.setToValue(0);
 
         doneButton.setOnAction(event -> {
-            Task daily = getItem();
+            Daily daily = getItem();
             System.out.println("Задание выполнено: " + daily.getName());
-            String difficulty = daily.getDifficulty();
-            controller.addProgress(difficulty);
+            controller.addProgressByPercent(15);
 
-            String bonus = "";
-            if (difficulty.equals("Позитивна")) {
-                bonus = "+10";
-            } else if (difficulty.equals("Негативна")) {
-                bonus = "-10";
-            }
-
-            bonusLabel.setText(bonus);
+            bonusLabel.setText("+15");
             bonusLabel.relocate(doneButton.getLayoutX() + doneButton.getWidth() / 2 - bonusLabel.getWidth() / 2,
                     doneButton.getLayoutY() - 30);
             bonusLabel.setVisible(true);
@@ -61,42 +51,33 @@ public class DailyCell extends ListCell<Task> {
             fadeTransition.playFromStart();
         });
 
+
         deleteButton.setOnAction(event -> {
-            Task daily = getItem();
+            Daily daily = getItem();
             controller.deleteDaily(daily);
             dailyList.remove(daily);
         });
 
-        HBox hbox = new HBox(dailyNameText, dailyDifficultyText, doneButton, deleteButton);
+        HBox hbox = new HBox(dailyNameText, doneButton, deleteButton);
         hbox.setSpacing(10);
 
         setGraphic(new HBox(hbox, bonusLabel));
     }
 
     @Override
-    protected void updateItem(Task daily, boolean empty) {
+    protected void updateItem(Daily daily, boolean empty) {
         super.updateItem(daily, empty);
 
         if (empty || daily == null) {
             setText(null);
             setGraphic(null);
         } else {
-            dailyNameText.setWrappingWidth(230);
-            dailyDifficultyText.setWrappingWidth(130);
+            dailyNameText.setWrappingWidth(380);
             dailyNameText.setText(daily.getName());
-            dailyDifficultyText.setText("Якість: " + getSelectedDifficulty(daily));
             setText(null);
-            setGraphic(new HBox(dailyNameText, dailyDifficultyText, doneButton, deleteButton, bonusLabel));
+            setGraphic(new HBox(dailyNameText, doneButton, deleteButton, bonusLabel));
         }
 
     }
 
-    private String getSelectedDifficulty(Task daily) {
-        for (Task t : dailyList) {
-            if (t.getName().equals(daily.getName())) {
-                return t.getDifficulty();
-            }
-        }
-        return "Неизвестно";
-    }
 }

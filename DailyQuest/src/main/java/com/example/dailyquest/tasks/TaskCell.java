@@ -24,6 +24,9 @@ public class TaskCell extends ListCell<Task> {
     private final FadeTransition fadeTransition;
 
     public TaskCell(ObservableList<Task> taskList, Controller controller) {
+
+
+
         this.taskList = taskList;
         this.controller = controller;
 
@@ -46,7 +49,6 @@ public class TaskCell extends ListCell<Task> {
             System.out.println("Задание выполнено: " + task.getName());
             String difficulty = task.getDifficulty();
             controller.addProgress(difficulty);
-
             String bonus = "";
             if (difficulty.equals("Легко")) {
                 bonus = "+5";
