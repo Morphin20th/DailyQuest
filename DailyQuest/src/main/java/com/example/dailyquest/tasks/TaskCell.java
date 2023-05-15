@@ -24,9 +24,6 @@ public class TaskCell extends ListCell<Task> {
     private final FadeTransition fadeTransition;
 
     public TaskCell(ObservableList<Task> taskList, Controller controller) {
-
-
-
         this.taskList = taskList;
         this.controller = controller;
 
@@ -49,7 +46,8 @@ public class TaskCell extends ListCell<Task> {
             System.out.println("Задание выполнено: " + task.getName());
 
             // Устанавливаем статус выполнения задачи
-            task.setCompleted(true);
+            controller.markTaskCompleted(task);
+
 
             String difficulty = task.getDifficulty();
             controller.addProgress(difficulty);
@@ -99,9 +97,15 @@ public class TaskCell extends ListCell<Task> {
             taskDifficultyText.setText("Cкладність: " + getSelectedDifficulty(task));
             setText(null);
             setGraphic(new HBox(taskNameText, taskDifficultyText, doneButton, deleteButton, bonusLabel));
-        }
 
+            if (task.isCompleted()) {
+                doneButton.setDisable(true);
+            } else {
+                doneButton.setDisable(false);
+            }
+        }
     }
+
 
     private String getSelectedDifficulty(Task task) {
         for (Task t : taskList) {

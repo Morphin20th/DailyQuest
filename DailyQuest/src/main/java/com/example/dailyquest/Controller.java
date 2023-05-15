@@ -297,4 +297,8 @@ public class Controller {
             progressBar.setProgress(newProgress);
         }
     }
+    public void markTaskCompleted(Task task) {
+        task.setCompleted(true);
+    }
+
 }
