@@ -1,6 +1,8 @@
 package com.example.dailyquest;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
     private boolean isCompleted;
     private String name;
     private String difficulty;

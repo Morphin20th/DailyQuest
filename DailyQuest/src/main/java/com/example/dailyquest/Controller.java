@@ -21,8 +21,7 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,7 +100,8 @@ public class Controller {
             ObservableList<Task> items = FXCollections.observableArrayList(taskList);
             taskListView.setItems(items);
             taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(items,this));
+            taskListView.setCellFactory(param -> new TaskCell(items, this));
+
         }
     }
     public void newHabit(ActionEvent event) throws Exception {
@@ -297,4 +297,47 @@ public class Controller {
             progressBar.setProgress(newProgress);
         }
     }
+
+
+    boolean ref;
+    String saveDirectory ="D:\\Git_Proj\\DailyQuest\\src\\main\\resources\\saves";
+    public void saveTask() {
+        String filePath = saveDirectory + File.separator + "tasks.dat";
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            outputStream.writeObject(taskList);
+            System.out.println("Данные сохранены в файл: " + filePath);
+        } catch (IOException e) {
+            System.err.println("Ошибка при сохранении данных в файл: " + e.getMessage());
+        }
+    }
+
+    public void loadTasksFromFile() {
+        String filePath = saveDirectory + File.separator + "tasks.dat";
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath))) {
+            taskList = (List<Task>) inputStream.readObject();
+            System.out.println("Данные загружены из файла: " + filePath);
+
+            // Обновляем интерфейс
+            ObservableList<Task> items = FXCollections.observableArrayList(taskList);
+            taskListView.setItems(items);
+            taskListView.refresh();
+            taskListView.setCellFactory(param -> new TaskCell(items, this));
+
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Ошибка при загрузке данных из файла: " + e.getMessage());
+        }
+    }
+
+    public void getTaskData() {
+        loadTasksFromFile();
+        List<Task> loadedTasks = taskList;
+        for (Task task : loadedTasks) {
+            System.out.println("Название задачи: " + task.getName());
+            System.out.println("Сложность задачи: " + task.getDifficulty());
+            System.out.println("Статус задачи: " + task.isCompleted());
+            System.out.println("----------------------");
+        }
+    }
+
 }
