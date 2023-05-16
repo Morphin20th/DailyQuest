@@ -10,6 +10,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class HabitCell extends ListCell<Task> {
 
@@ -66,8 +68,28 @@ public class HabitCell extends ListCell<Task> {
             fadeTransition.playFromStart();
 
             completedHabit++;
-            System.out.println("Виконано задач: " + completedHabit);
+            System.out.println("Виконано звичок: " + completedHabit);
             System.out.println("Завдання виконано? : "+ habit.isCompleted());
+            controller.AchievementHabit(completedHabit);
+            if (completedHabit == 10) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Ініціативний");
+                alert.setHeaderText("Вітаю з новим виконанним досягненням");
+                alert.setContentText("Ви виконали 10 звичок");
+                alert.showAndWait();
+            } else if (completedHabit == 20) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Звичколюб");
+                alert.setHeaderText("Вітаю з новим виконанним досягненням");
+                alert.setContentText("Ви виконали 20 звичок");
+                alert.showAndWait();
+            } else if (completedHabit == 30) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Звичкоман");
+                alert.setHeaderText("Вітаю з новим виконанним досягненням");
+                alert.setContentText("Ви виконали 30 звичок");
+                alert.showAndWait();
+            }
         });
 
         deleteButton.setOnAction(event -> {

@@ -10,6 +10,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class TaskCell extends ListCell<Task> {
 
@@ -73,6 +75,27 @@ public class TaskCell extends ListCell<Task> {
             this.setStyle("-fx-background-color: rgb(222, 245, 191);");
 
             System.out.println("Завдання виконано? : "+ task.isCompleted());
+            controller.AchievementTask(completedTask);
+            if (completedTask == 5) {
+
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Новачок");
+                alert.setHeaderText("Вітаю з новим виконанним досягненням");
+                alert.setContentText("Ви виконали 5 задач");
+                alert.showAndWait();
+            } else if (completedTask == 10) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Ретельний працівник");
+                alert.setHeaderText("Вітаю з новим виконанним досягненням");
+                alert.setContentText("Ви виконали 10 задач");
+                alert.showAndWait();
+            } else if (completedTask == 15) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Майстер завдань");
+                alert.setHeaderText("Вітаю з новим виконанним досягненням");
+                alert.setContentText("Ви виконали 15 задач");
+                alert.showAndWait();
+            }
         });
 
 
@@ -114,6 +137,7 @@ public class TaskCell extends ListCell<Task> {
             this.setStyle(task.getHBoxColor());
 
         }
+
     }
 
 

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -159,15 +160,6 @@
                   <ListView fx:id="taskListView" layoutY="70.0" prefHeight="365.0" prefWidth="600.0" style="-fx-fixed-cell-size: 35;" styleClass="list-cell" stylesheets="@../../../styling/styling.css" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="achievementsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-               <children>
-                  <Label layoutX="190.0" layoutY="180.0" text="Ваші досягнення">
-                     <font>
-                        <Font size="37.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="habitsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <HBox prefHeight="70.0" prefWidth="600.0" style="-fx-border-color: #b5b1b0; -fx-border-width: 1px;">
@@ -271,6 +263,141 @@
                      </font>
                   </Button>
                </children>
+            </AnchorPane>
+            <AnchorPane fx:id="achievementsPane" prefHeight="403.0" prefWidth="580.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <ScrollPane layoutX="-1.0" layoutY="28.0" prefHeight="414.0" prefWidth="602.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="547.0" prefWidth="586.0">
+                           <children>
+                              <HBox fx:id="achievement1" prefHeight="61.0" prefWidth="587.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="202.0" text="Новачок">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="18.0" prefWidth="110.0" text="Виконати 5 завдань" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="achievement2" layoutX="-1.0" layoutY="62.0" prefHeight="61.0" prefWidth="587.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="202.0" text="Ретельний працівник">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="18.0" prefWidth="130.0" text="Виконати 10 завдань" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="achievement3" layoutY="124.0" prefHeight="61.0" prefWidth="587.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="202.0" text="Майстер завдань">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="18.0" prefWidth="123.0" text="Виконати 15 завдань" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="achievement4" layoutX="-1.0" layoutY="196.0" prefHeight="61.0" prefWidth="587.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="202.0" text="Ініціативний">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="18.0" prefWidth="122.0" text="Виконати 10 звичок" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="achievement5" layoutY="258.0" prefHeight="61.0" prefWidth="587.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="202.0" text="Звичколюб">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="18.0" prefWidth="124.0" text="Виконати 20 звичок" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="achievement6" layoutY="320.0" prefHeight="61.0" prefWidth="587.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="202.0" text="Звичкоман">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="18.0" prefWidth="122.0" text="Виконати 30 звичок" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="achievement7" layoutX="-1.0" layoutY="382.0" prefHeight="61.0" prefWidth="587.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="202.0" text="Старанний">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="18.0" prefWidth="165.0" text="Виконати 5 щоденних справ" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="achievement8" layoutX="-1.0" layoutY="444.0" prefHeight="61.0" prefWidth="587.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="202.0" text="Цілеспрямований">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="18.0" prefWidth="191.0" text="Виконати 10 щоденних справ" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="achievement9" layoutX="-1.0" layoutY="506.0" prefHeight="61.0" prefWidth="587.0">
+                                 <children>
+                                    <Label prefHeight="32.0" prefWidth="202.0" text="Невтомний">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="18.0" prefWidth="178.0" text="Виконати 15 щоденних справ" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+               <padding>
+                  <Insets top="-10.0" />
+               </padding>
             </AnchorPane>
          </children>
       </StackPane>
