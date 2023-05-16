@@ -1,7 +1,7 @@
 package com.example.dailyquest.habits;
 
 import com.example.dailyquest.Controller;
-import com.example.dailyquest.Task;
+import com.example.dailyquest.habits.Habit;
 import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -13,19 +13,19 @@ import javafx.util.Duration;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class HabitCell extends ListCell<Task> {
+public class HabitCell extends ListCell<Habit> {
 
     private final Button doneButton;
     private final Button deleteButton;
     private final Text habitNameText;
     private final Text habitDifficultyText;
-    private final ObservableList<Task> habitList;
+    private final ObservableList<Habit> habitList;
     private Controller controller;
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
     private static int completedHabit = 0;
-    public HabitCell(ObservableList<Task> habitList, Controller controller) {
+    public HabitCell(ObservableList<Habit> habitList, Controller controller) {
         this.habitList = habitList;
         this.controller = controller;
 
@@ -44,11 +44,8 @@ public class HabitCell extends ListCell<Task> {
         fadeTransition.setToValue(0);
 
         doneButton.setOnAction(event -> {
-            Task habit = getItem();
+            Habit habit = getItem();
             System.out.println("Задание выполнено: " + habit.getName());
-
-            // Устанавливаем статус выполнения задачи
-            habit.setCompleted(true);
 
             String difficulty = habit.getDifficulty();
             controller.addProgress(difficulty);
@@ -69,7 +66,6 @@ public class HabitCell extends ListCell<Task> {
 
             completedHabit++;
             System.out.println("Виконано звичок: " + completedHabit);
-            System.out.println("Завдання виконано? : "+ habit.isCompleted());
             controller.AchievementHabit(completedHabit);
             if (completedHabit == 10) {
                 Alert alert = new Alert(AlertType.INFORMATION);
@@ -93,7 +89,7 @@ public class HabitCell extends ListCell<Task> {
         });
 
         deleteButton.setOnAction(event -> {
-            Task habit = getItem();
+            Habit habit = getItem();
             controller.deleteHabit(habit);
             habitList.remove(habit);
         });
@@ -105,7 +101,7 @@ public class HabitCell extends ListCell<Task> {
     }
 
     @Override
-    protected void updateItem(Task habit, boolean empty) {
+    protected void updateItem(Habit habit, boolean empty) {
         super.updateItem(habit, empty);
 
         if (empty || habit == null) {
@@ -122,8 +118,8 @@ public class HabitCell extends ListCell<Task> {
 
     }
 
-    private String getSelectedDifficulty(Task habit) {
-        for (Task t : habitList) {
+    private String getSelectedDifficulty(Habit habit) {
+        for (Habit t : habitList) {
             if (t.getName().equals(habit.getName())) {
                 return t.getDifficulty();
             }

@@ -122,7 +122,7 @@ public class TaskCell extends ListCell<Task> {
             setText(null);
             setGraphic(null);
         } else {
-            taskNameText.setWrappingWidth(230);
+            taskNameText.setWrappingWidth(225);
             taskDifficultyText.setWrappingWidth(130);
             taskNameText.setText(task.getName());
             taskDifficultyText.setText("Cкладність: " + getSelectedDifficulty(task));
