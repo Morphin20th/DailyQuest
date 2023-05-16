@@ -25,12 +25,12 @@ public class AddHabitController {
     public void initialize() {
         difficultyComboBox.setItems(difficultyOptions);
     }
-    public Task addHabitButton() {
+    public Habit addHabitButton() {
         // Получаем значение из поля ввода названия
         String habitName = habitNameTextField.getText();
         String difficulty = difficultyComboBox.getValue().toString();
         // Создание нового объекта Task
-        Task newTask = new Task(habitName, difficulty);
+        Habit newTask = new Habit(habitName, difficulty);
 
         // Получаем выбранную сложность
 

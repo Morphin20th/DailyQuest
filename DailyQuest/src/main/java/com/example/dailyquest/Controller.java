@@ -3,6 +3,7 @@ package com.example.dailyquest;
 import com.example.dailyquest.daily.AddDailyController;
 import com.example.dailyquest.daily.DailyCell;
 import com.example.dailyquest.daily.Daily;
+import com.example.dailyquest.habits.Habit;
 import com.example.dailyquest.habits.HabitCell;
 import com.example.dailyquest.habits.AddHabitController;
 import com.example.dailyquest.tasks.AddTaskController;
@@ -41,7 +42,7 @@ public class Controller {
     @FXML private AnchorPane habitsPane;
     @FXML private AnchorPane dailyPane;
     @FXML private ListView<Task> taskListView;
-    @FXML private ListView<Task> habitListView;
+    @FXML private ListView<Habit> habitListView;
     @FXML private ListView<Daily> dailyListView;
     @FXML private HBox achievement1;
     @FXML private HBox achievement2;
@@ -54,10 +55,10 @@ public class Controller {
     @FXML private HBox achievement9;
     private int level = 1;
     String pathToImage = "";
-    String profileName;
+    String profileName = "Ім'я профілю";
     Double progress;
     private List<Task> taskList = new ArrayList<Task>();
-    private List<Task> habitList = new ArrayList<Task>();
+    private List<Habit> habitList = new ArrayList<Habit>();
     private List<Daily> dailyList = new ArrayList<Daily>();
     @FXML private void editProfileName(){
         profileName = profileNameField.getText();
@@ -131,11 +132,11 @@ public class Controller {
 
         if (addHabitController.addHabitButton() != null) {  //проверка пустое ли имя
             // Создаем новое задание и добавляем его в список заданий
-            Task newTask = addHabitController.addHabitButton();
-            habitList.add(newTask);
+            Habit newHabit = addHabitController.addHabitButton();
+            habitList.add(newHabit);
 
             // Обновляем интерфейс
-            ObservableList<Task> items = FXCollections.observableArrayList(habitList);
+            ObservableList<Habit> items = FXCollections.observableArrayList(habitList);
             habitListView.setItems(items);
             habitListView.refresh();
             habitListView.setCellFactory(param -> new HabitCell(items,this));
@@ -215,13 +216,13 @@ public class Controller {
         taskListView.setItems(items);
         taskListView.refresh();
     }
-    public void deleteHabit(Task task) {
+    public void deleteHabit(Habit task) {
         // Удалить задачу с указанным именем из списка задач
         habitList.remove(task);
 
 
         // Обновить интерфейс
-        ObservableList<Task> items = FXCollections.observableArrayList(habitList);
+        ObservableList<Habit> items = FXCollections.observableArrayList(habitList);
         habitListView.setItems(items);
         habitListView.refresh();
     }
@@ -310,7 +311,7 @@ public class Controller {
     String userHome = System.getProperty("user.home");
     String saveDirectory = userHome + File.separator + "Desktop";
     public void saveTask() {
-         String filePath = saveDirectory + File.separator + "tasks.dat";
+        String filePath = saveDirectory + File.separator + "tasks.dat";
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
             //сохранение списков заданий
             outputStream.writeObject(taskList);
@@ -342,7 +343,7 @@ public class Controller {
             taskList = (List<Task>) inputStream.readObject();
             System.out.println("Задания загружены из файла: " + filePath);
 
-            habitList = (List<Task>) inputStream.readObject();
+            habitList = (List<Habit>) inputStream.readObject();
             System.out.println("Привычки загружены из файла: " + filePath);
 
             dailyList = (List<Daily>) inputStream.readObject();
@@ -360,7 +361,7 @@ public class Controller {
             taskListView.refresh();
             taskListView.setCellFactory(param -> new TaskCell(loadtasks, this,level));
 
-            ObservableList<Task> loadhabits = FXCollections.observableArrayList(habitList);
+            ObservableList<Habit> loadhabits = FXCollections.observableArrayList(habitList);
             habitListView.setItems(loadhabits);
             habitListView.refresh();
             habitListView.setCellFactory(param -> new TaskCell(loadhabits, this,level));
@@ -372,7 +373,7 @@ public class Controller {
 
             //обновляем данные профиля
             levelLabel.setText("Рівень: "+ level);
-            if(pathToImage != "") {
+            if(!Objects.equals(pathToImage, "")) {
                 Image profileImage = new Image(pathToImage);
                 imageView.setImage(profileImage);
             }
