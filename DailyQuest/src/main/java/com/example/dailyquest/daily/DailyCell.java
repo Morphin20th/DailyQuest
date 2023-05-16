@@ -10,6 +10,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class DailyCell extends ListCell<Daily> {
     private final Button doneButton;
@@ -51,6 +53,26 @@ public class DailyCell extends ListCell<Daily> {
             fadeTransition.playFromStart();
             completedDaily++;
             System.out.println("Виконано задач: " + completedDaily);
+            controller.AchievementDaily(completedDaily);
+            if (completedDaily == 5) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Старанний");
+                alert.setHeaderText("Вітаю з новим виконанним досягненням");
+                alert.setContentText("Ви виконали 5 щоденних справ");
+                alert.showAndWait();
+            } else if (completedDaily == 10) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Цілеспрямований");
+                alert.setHeaderText("Вітаю з новим виконанним досягненням");
+                alert.setContentText("Ви виконали 10 щоденних справ");
+                alert.showAndWait();
+            } else if (completedDaily == 15) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Невтомний");
+                alert.setHeaderText("Вітаю з новим виконанним досягненням");
+                alert.setContentText("Ви виконали 15 щоденних справ");
+                alert.showAndWait();
+            }
         });
 
 
@@ -74,7 +96,7 @@ public class DailyCell extends ListCell<Daily> {
             setText(null);
             setGraphic(null);
         } else {
-            dailyNameText.setWrappingWidth(360);
+            dailyNameText.setWrappingWidth(380);
             dailyNameText.setText(daily.getName());
             setText(null);
             setGraphic(new HBox(dailyNameText, doneButton, deleteButton, bonusLabel));

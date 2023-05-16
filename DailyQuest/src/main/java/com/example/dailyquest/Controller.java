@@ -43,7 +43,15 @@ public class Controller {
     @FXML private ListView<Task> taskListView;
     @FXML private ListView<Task> habitListView;
     @FXML private ListView<Daily> dailyListView;
-
+    @FXML private HBox achievement1;
+    @FXML private HBox achievement2;
+    @FXML private HBox achievement3;
+    @FXML private HBox achievement4;
+    @FXML private HBox achievement5;
+    @FXML private HBox achievement6;
+    @FXML private HBox achievement7;
+    @FXML private HBox achievement8;
+    @FXML private HBox achievement9;
 
     private int level = 1;
     String pathToImage = "";
@@ -252,8 +260,6 @@ public class Controller {
                 return;
         }
 
-
-
         // Увеличиваем значение прогрессбара на increment
         progressBar.setProgress(progressBar.getProgress() + increment);
         // если опыт меньше 0
@@ -391,5 +397,61 @@ public class Controller {
             System.out.println("----------------------");
         }
     }
+    public void AchievementTask(int completedTask) {
+        if (completedTask >= 5) {
+            achievement1.setStyle("-fx-background-color: rgb(222, 245, 191);");
+        } else {
+            achievement1.setStyle("");
+        }
 
+        if (completedTask >= 10) {
+            achievement2.setStyle("-fx-background-color: rgb(222, 245, 191);");
+        } else {
+            achievement2.setStyle("");
+        }
+
+        if (completedTask >= 15) {
+            achievement3.setStyle("-fx-background-color: rgb(222, 245, 191);");
+        } else {
+            achievement3.setStyle("");
+        }
+    }
+    public void AchievementHabit(int completedHabit) {
+        if (completedHabit >= 10) {
+            achievement4.setStyle("-fx-background-color: rgb(222, 245, 191);");
+        } else {
+            achievement4.setStyle("");
+        }
+
+        if (completedHabit >= 20) {
+            achievement5.setStyle("-fx-background-color: rgb(222, 245, 191);");
+        } else {
+            achievement5.setStyle("");
+        }
+
+        if (completedHabit >= 30) {
+            achievement6.setStyle("-fx-background-color: rgb(222, 245, 191);");
+        } else {
+            achievement6.setStyle("");
+        }
+    }
+    public void AchievementDaily(int completedDaily) {
+        if (completedDaily >= 5) {
+            achievement7.setStyle("-fx-background-color: rgb(222, 245, 191);");
+        } else {
+            achievement7.setStyle("");
+        }
+
+        if (completedDaily >= 10) {
+            achievement8.setStyle("-fx-background-color: rgb(222, 245, 191);");
+        } else {
+            achievement8.setStyle("");
+        }
+
+        if (completedDaily >= 15) {
+            achievement9.setStyle("-fx-background-color: rgb(222, 245, 191);");
+        } else {
+            achievement9.setStyle("");
+        }
+    }
 }
