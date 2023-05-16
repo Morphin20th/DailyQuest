@@ -20,7 +20,7 @@ public class DailyCell extends ListCell<Daily> {
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
-
+    private static int completedDaily = 0;
     public DailyCell(ObservableList<Daily> dailyList, Controller controller) {
         this.dailyList = dailyList;
         this.controller = controller;
@@ -49,6 +49,8 @@ public class DailyCell extends ListCell<Daily> {
             bonusLabel.setVisible(true);
             fadeTransition.setFromValue(1);
             fadeTransition.playFromStart();
+            completedDaily++;
+            System.out.println("Виконано задач: " + completedDaily);
         });
 
 

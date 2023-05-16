@@ -299,9 +299,6 @@ public class Controller {
     public void markTaskCompleted(Task task) {
         task.setCompleted(true);
     }
-
-
-
     boolean ref;
     String saveDirectory ="D:\\Git_Proj\\DailyQuest\\src\\main\\resources\\saves";
     public void saveTask() {
@@ -313,25 +310,20 @@ public class Controller {
             System.err.println("Ошибка при сохранении данных в файл: " + e.getMessage());
         }
     }
-
     public void loadTasksFromFile() {
         String filePath = saveDirectory + File.separator + "tasks.dat";
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath))) {
             taskList = (List<Task>) inputStream.readObject();
             System.out.println("Данные загружены из файла: " + filePath);
-
             // Обновляем интерфейс
             ObservableList<Task> items = FXCollections.observableArrayList(taskList);
             taskListView.setItems(items);
             taskListView.refresh();
             taskListView.setCellFactory(param -> new TaskCell(items, this));
-
-
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Ошибка при загрузке данных из файла: " + e.getMessage());
         }
     }
-
     public void getTaskData() {
         loadTasksFromFile();
         List<Task> loadedTasks = taskList;
@@ -342,5 +334,4 @@ public class Controller {
             System.out.println("----------------------");
         }
     }
-
 }
