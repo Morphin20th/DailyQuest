@@ -376,9 +376,6 @@ public class Controller {
             //обновляем имя и прогресбар
             profileNameLabel.setText(profileName);
             progressBar.setProgress(progress);
-
-
-
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Ошибка при загрузке данных из файла: " + e.getMessage());
         }
