@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Controller {
     private Stage stage;
@@ -45,18 +46,21 @@ public class Controller {
 
 
     private int level = 1;
+    String pathToImage = "";
+    String profileName;
+    Double progress;
     private List<Task> taskList = new ArrayList<Task>();
     private List<Task> habitList = new ArrayList<Task>();
     private List<Daily> dailyList = new ArrayList<Daily>();
     @FXML private void editProfileName(){
-        String newProfileName = profileNameField.getText();
-        if (newProfileName.isEmpty()) {
+        profileName = profileNameField.getText();
+        if (profileName.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Помилка");
             alert.setContentText("Строка Ім'я профіля не може бути порожньою");
             alert.showAndWait();
         } else {
-            profileNameLabel.setText(newProfileName);
+            profileNameLabel.setText(profileName);
         }
     }
     @FXML private void ChooseImage() {
@@ -72,6 +76,7 @@ public class Controller {
         if (selectedFile != null) {
             // Создание объекта Image на основе выбранного файла и установка его в ImageView
             Image image = new Image(selectedFile.toURI().toString());
+            pathToImage= selectedFile.toString();
             imageView.setImage(image);
         }
     }
@@ -279,7 +284,6 @@ public class Controller {
         if (newProgress >= 1.0) {
             // Если новый прогресс больше или равен 1.0, то сбрасываем значение прогрессбара
             progressBar.setProgress(0.0);
-
             // Увеличиваем уровень
             level++;
             levelLabel.setText("Рівень " + level);
@@ -296,19 +300,33 @@ public class Controller {
             progressBar.setProgress(newProgress);
         }
     }
-    public void markTaskCompleted(Task task) {
-        task.setCompleted(true);
-    }
 
 
+    //раздел сохранений и загрузок
     String userHome = System.getProperty("user.home");
     String saveDirectory = userHome + File.separator + "Desktop";
-
     public void saveTask() {
          String filePath = saveDirectory + File.separator + "tasks.dat";
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            //сохранение списков заданий
             outputStream.writeObject(taskList);
-            System.out.println("Данные сохранены в файл: " + filePath);
+            System.out.println("Задания сохранены в файл: " + filePath);
+            outputStream.writeObject(habitList);
+            System.out.println("Привычки сохранены в файл: " + filePath);
+            outputStream.writeObject(dailyList);
+            System.out.println("Ежедневки сохранены в файл: " + filePath);
+
+            //сохранения данных профиля
+            outputStream.writeInt(level);
+            outputStream.writeUTF(pathToImage);
+            System.out.println("Ава и уровень сохранены в файл: " + filePath);
+
+            //сохраняем имя и прогресбар
+            outputStream.writeUTF(profileName);
+            progress=progressBar.getProgress();
+            outputStream.writeDouble(progress);
+
+
         } catch (IOException e) {
             System.err.println("Ошибка при сохранении данных в файл: " + e.getMessage());
         }
@@ -318,13 +336,47 @@ public class Controller {
         String filePath = saveDirectory + File.separator + "tasks.dat";
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath))) {
             taskList = (List<Task>) inputStream.readObject();
-            System.out.println("Данные загружены из файла: " + filePath);
+            System.out.println("Задания загружены из файла: " + filePath);
+
+            habitList = (List<Task>) inputStream.readObject();
+            System.out.println("Привычки загружены из файла: " + filePath);
+
+            dailyList = (List<Daily>) inputStream.readObject();
+            System.out.println("Ежедневки загружены из файла: " + filePath);
+
+            level = inputStream.readInt();
+            pathToImage = inputStream.readUTF();
+
+            profileName = inputStream.readUTF();
+            progress = inputStream.readDouble();
 
             // Обновляем интерфейс
-            ObservableList<Task> items = FXCollections.observableArrayList(taskList);
-            taskListView.setItems(items);
+            ObservableList<Task> loadtasks = FXCollections.observableArrayList(taskList);
+            taskListView.setItems(loadtasks);
             taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(items, this));
+            taskListView.setCellFactory(param -> new TaskCell(loadtasks, this));
+
+            ObservableList<Task> loadhabits = FXCollections.observableArrayList(habitList);
+            habitListView.setItems(loadhabits);
+            habitListView.refresh();
+            habitListView.setCellFactory(param -> new TaskCell(loadhabits, this));
+
+            ObservableList<Daily> loaddaily = FXCollections.observableArrayList(dailyList);
+            dailyListView.setItems(loaddaily);
+            dailyListView.refresh();
+            dailyListView.setCellFactory(param -> new DailyCell(loaddaily, this));
+
+            //обновляем данные профиля
+            levelLabel.setText("Рівень: "+ level);
+            if(pathToImage != "") {
+                Image profileImage = new Image(pathToImage);
+                imageView.setImage(profileImage);
+            }
+
+            //обновляем имя и прогресбар
+            profileNameLabel.setText(profileName);
+            progressBar.setProgress(progress);
+
 
 
         } catch (IOException | ClassNotFoundException e) {

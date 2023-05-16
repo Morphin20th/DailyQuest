@@ -22,7 +22,7 @@ public class HabitCell extends ListCell<Task> {
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
-
+    private static int completedHabit = 0;
     public HabitCell(ObservableList<Task> habitList, Controller controller) {
         this.habitList = habitList;
         this.controller = controller;
@@ -65,6 +65,8 @@ public class HabitCell extends ListCell<Task> {
             fadeTransition.setFromValue(1);
             fadeTransition.playFromStart();
 
+            completedHabit++;
+            System.out.println("Виконано задач: " + completedHabit);
             System.out.println("Завдання виконано? : "+ habit.isCompleted());
         });
 
