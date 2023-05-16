@@ -364,7 +364,7 @@ public class Controller {
             ObservableList<Habit> loadhabits = FXCollections.observableArrayList(habitList);
             habitListView.setItems(loadhabits);
             habitListView.refresh();
-            habitListView.setCellFactory(param -> new TaskCell(loadhabits, this,level));
+            habitListView.setCellFactory(param -> new HabitCell(loadhabits, this));
 
             ObservableList<Daily> loaddaily = FXCollections.observableArrayList(dailyList);
             dailyListView.setItems(loaddaily);
@@ -386,16 +386,6 @@ public class Controller {
         }
     }
 
-    public void getTaskData() {
-        loadTasksFromFile();
-        List<Task> loadedTasks = taskList;
-        for (Task task : loadedTasks) {
-            System.out.println("Название задачи: " + task.getName());
-            System.out.println("Сложность задачи: " + task.getDifficulty());
-            System.out.println("Статус задачи: " + task.isCompleted());
-            System.out.println("----------------------");
-        }
-    }
     public void AchievementTask(int completedTask) {
         if (completedTask >= 5) {
             achievement1.setStyle("-fx-background-color: rgb(222, 245, 191);");
