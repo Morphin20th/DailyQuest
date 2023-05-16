@@ -24,6 +24,7 @@ public class TaskCell extends ListCell<Task> {
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
+    private static int completedTask = 0;
 
     public TaskCell(ObservableList<Task> taskList, Controller controller) {
         this.taskList = taskList;
@@ -49,7 +50,7 @@ public class TaskCell extends ListCell<Task> {
 
             // Устанавливаем статус выполнения задачи
             task.setCompleted(true);
-
+            completedTask++;
             String difficulty = task.getDifficulty();
             controller.addProgress(difficulty);
             String bonus = "";
@@ -60,6 +61,7 @@ public class TaskCell extends ListCell<Task> {
             } else if (difficulty.equals("Складно")) {
                 bonus = "+15";
             }
+            System.out.println("Виконано задач: " + completedTask);
 
             bonusLabel.setText(bonus);
             bonusLabel.relocate(doneButton.getLayoutX() + doneButton.getWidth() / 2 - bonusLabel.getWidth() / 2,
