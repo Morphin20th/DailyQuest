@@ -24,9 +24,6 @@ public class TaskCell extends ListCell<Task> {
     private final FadeTransition fadeTransition;
 
     public TaskCell(ObservableList<Task> taskList, Controller controller) {
-
-
-
         this.taskList = taskList;
         this.controller = controller;
 
@@ -70,19 +67,26 @@ public class TaskCell extends ListCell<Task> {
             fadeTransition.playFromStart();
             doneButton.setDisable(true);
 
+            // Изменяем цвет HBox на заданный
+            this.setStyle("-fx-background-color: rgb(222, 245, 191);");
+
             System.out.println("Завдання виконано? : "+ task.isCompleted());
         });
+
 
         deleteButton.setOnAction(event -> {
             Task task = getItem();
             controller.deleteTask(task);
             taskList.remove(task);
+            setGraphic(null); // удаляем HBox из ListCell
+            setText(null); // удаляем текст из ListCell
+
         });
 
         HBox hbox = new HBox(taskNameText, taskDifficultyText, doneButton, deleteButton);
         hbox.setSpacing(10);
-
         setGraphic(new HBox(hbox, bonusLabel));
+
     }
 
     @Override
@@ -99,9 +103,17 @@ public class TaskCell extends ListCell<Task> {
             taskDifficultyText.setText("Cкладність: " + getSelectedDifficulty(task));
             setText(null);
             setGraphic(new HBox(taskNameText, taskDifficultyText, doneButton, deleteButton, bonusLabel));
-        }
 
+            if (task.isCompleted()) {
+                doneButton.setDisable(true);
+            } else {
+                doneButton.setDisable(false);
+            }
+            this.setStyle(task.getHBoxColor());
+
+        }
     }
+
 
     private String getSelectedDifficulty(Task task) {
         for (Task t : taskList) {

@@ -43,17 +43,12 @@ public class DailyCell extends ListCell<Daily> {
             System.out.println("Задание выполнено: " + daily.getName());
             controller.addProgressByPercent(15);
 
-            // Устанавливаем статус выполнения задачи
-            daily.setCompleted(true);
-
             bonusLabel.setText("+15");
             bonusLabel.relocate(doneButton.getLayoutX() + doneButton.getWidth() / 2 - bonusLabel.getWidth() / 2,
                     doneButton.getLayoutY() - 30);
             bonusLabel.setVisible(true);
             fadeTransition.setFromValue(1);
             fadeTransition.playFromStart();
-
-            System.out.println("Завдання виконано? : "+ daily.isCompleted());
         });
 
 
@@ -77,7 +72,7 @@ public class DailyCell extends ListCell<Daily> {
             setText(null);
             setGraphic(null);
         } else {
-            dailyNameText.setWrappingWidth(360);
+            dailyNameText.setWrappingWidth(380);
             dailyNameText.setText(daily.getName());
             setText(null);
             setGraphic(new HBox(dailyNameText, doneButton, deleteButton, bonusLabel));

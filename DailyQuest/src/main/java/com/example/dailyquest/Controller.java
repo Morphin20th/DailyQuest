@@ -21,7 +21,8 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,8 +101,7 @@ public class Controller {
             ObservableList<Task> items = FXCollections.observableArrayList(taskList);
             taskListView.setItems(items);
             taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(items, this));
-
+            taskListView.setCellFactory(param -> new TaskCell(items,this));
         }
     }
     public void newHabit(ActionEvent event) throws Exception {
@@ -297,6 +297,10 @@ public class Controller {
             progressBar.setProgress(newProgress);
         }
     }
+    public void markTaskCompleted(Task task) {
+        task.setCompleted(true);
+    }
+
 
 
     boolean ref;
