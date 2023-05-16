@@ -302,10 +302,11 @@ public class Controller {
 
 
 
-    boolean ref;
-    String saveDirectory ="D:\\Git_Proj\\DailyQuest\\src\\main\\resources\\saves";
+    String userHome = System.getProperty("user.home");
+    String saveDirectory = userHome + File.separator + "Desktop";
+
     public void saveTask() {
-        String filePath = saveDirectory + File.separator + "tasks.dat";
+         String filePath = saveDirectory + File.separator + "tasks.dat";
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
             outputStream.writeObject(taskList);
             System.out.println("Данные сохранены в файл: " + filePath);
