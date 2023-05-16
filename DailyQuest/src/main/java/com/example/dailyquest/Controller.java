@@ -300,7 +300,6 @@ public class Controller {
             if(alert.showAndWait().get() == ButtonType.OK) {
                 stage =(Stage) scenePane1.getScene().getWindow();
             }
-
         } else {
             // Иначе устанавливаем новое значение прогрессбара
             progressBar.setProgress(newProgress);
