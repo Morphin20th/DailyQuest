@@ -26,7 +26,7 @@ public class TaskCell extends ListCell<Task> {
     private final FadeTransition fadeTransition;
     private static int completedTask = 0;
 
-    public TaskCell(ObservableList<Task> taskList, Controller controller) {
+    public TaskCell(ObservableList<Task> taskList, Controller controller,int level) {
         this.taskList = taskList;
         this.controller = controller;
 
@@ -78,18 +78,23 @@ public class TaskCell extends ListCell<Task> {
             controller.AchievementTask(completedTask);
             if (completedTask == 5) {
 
+                controller.achievementProgress();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Новачок");
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");
                 alert.setContentText("Ви виконали 5 задач");
                 alert.showAndWait();
             } else if (completedTask == 10) {
+
+                controller.achievementProgress();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Ретельний працівник");
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");
                 alert.setContentText("Ви виконали 10 задач");
                 alert.showAndWait();
             } else if (completedTask == 15) {
+
+                controller.achievementProgress();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Майстер завдань");
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");

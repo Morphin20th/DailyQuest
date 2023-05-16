@@ -72,18 +72,21 @@ public class HabitCell extends ListCell<Task> {
             System.out.println("Завдання виконано? : "+ habit.isCompleted());
             controller.AchievementHabit(completedHabit);
             if (completedHabit == 10) {
+                controller.achievementProgress();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Ініціативний");
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");
                 alert.setContentText("Ви виконали 10 звичок");
                 alert.showAndWait();
             } else if (completedHabit == 20) {
+                controller.achievementProgress();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Звичколюб");
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");
                 alert.setContentText("Ви виконали 20 звичок");
                 alert.showAndWait();
             } else if (completedHabit == 30) {
+                controller.achievementProgress();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Звичкоман");
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");

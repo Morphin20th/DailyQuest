@@ -55,18 +55,21 @@ public class DailyCell extends ListCell<Daily> {
             System.out.println("Виконано задач: " + completedDaily);
             controller.AchievementDaily(completedDaily);
             if (completedDaily == 5) {
+                controller.achievementProgress();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Старанний");
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");
                 alert.setContentText("Ви виконали 5 щоденних справ");
                 alert.showAndWait();
             } else if (completedDaily == 10) {
+                controller.achievementProgress();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Цілеспрямований");
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");
                 alert.setContentText("Ви виконали 10 щоденних справ");
                 alert.showAndWait();
             } else if (completedDaily == 15) {
+                controller.achievementProgress();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Невтомний");
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");

@@ -52,7 +52,6 @@ public class Controller {
     @FXML private HBox achievement7;
     @FXML private HBox achievement8;
     @FXML private HBox achievement9;
-
     private int level = 1;
     String pathToImage = "";
     String profileName;
@@ -113,7 +112,7 @@ public class Controller {
             ObservableList<Task> items = FXCollections.observableArrayList(taskList);
             taskListView.setItems(items);
             taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(items,this));
+            taskListView.setCellFactory(param -> new TaskCell(items,this,level));
         }
     }
     public void newHabit(ActionEvent event) throws Exception {
@@ -359,12 +358,12 @@ public class Controller {
             ObservableList<Task> loadtasks = FXCollections.observableArrayList(taskList);
             taskListView.setItems(loadtasks);
             taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(loadtasks, this));
+            taskListView.setCellFactory(param -> new TaskCell(loadtasks, this,level));
 
             ObservableList<Task> loadhabits = FXCollections.observableArrayList(habitList);
             habitListView.setItems(loadhabits);
             habitListView.refresh();
-            habitListView.setCellFactory(param -> new TaskCell(loadhabits, this));
+            habitListView.setCellFactory(param -> new TaskCell(loadhabits, this,level));
 
             ObservableList<Daily> loaddaily = FXCollections.observableArrayList(dailyList);
             dailyListView.setItems(loaddaily);
@@ -453,4 +452,16 @@ public class Controller {
             achievement9.setStyle("");
         }
     }
+    public void achievementProgress() {
+        level++;
+        levelLabel.setText("Рівень " + level);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Новий рівень!");
+        alert.setHeaderText("Вітаю з досягненнням " + level + "-го рівня");
+
+        if (alert.showAndWait().orElse(ButtonType.OK) == ButtonType.OK) {
+            // Действия, которые нужно выполнить при нажатии кнопки OK
+        }
+    }
+
 }
