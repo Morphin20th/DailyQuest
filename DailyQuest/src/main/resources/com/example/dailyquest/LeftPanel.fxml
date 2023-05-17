@@ -439,7 +439,7 @@
             </AnchorPane>
             <AnchorPane fx:id="profilePane" onDragDetected="#editProfileName" prefHeight="425.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Label fx:id="LabelDaily" layoutX="307.0" layoutY="240.0" text="0">
+                  <Label fx:id="LabelDaily" layoutX="238.0" layoutY="240.0" text="0">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font></Label>
@@ -491,31 +491,31 @@
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font></Label>
-                  <Label layoutX="18.0" layoutY="240.0" text="Кількість виконних щоденних справ:">
+                  <Label layoutX="18.0" layoutY="240.0" text="Виконано щоденних справ:">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font></Label>
-                  <Label layoutX="18.0" layoutY="274.0" text="Кількість виконанних звичок:">
+                  <Label layoutX="18.0" layoutY="274.0" text="Виконано звичок:">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font></Label>
-                  <Label layoutX="18.0" layoutY="309.0" text="Кількість виконанних завдань:">
+                  <Label layoutX="18.0" layoutY="309.0" text="Виконано завдань">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font></Label>
-                  <Label layoutX="18.0" layoutY="341.0" text="Отриманних досягнень:">
+                  <Label layoutX="18.0" layoutY="341.0" text="Отримано досягнень:">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font></Label>
-                  <Label fx:id="LabelHabit" layoutX="307.0" layoutY="274.0" text="0">
+                  <Label fx:id="LabelHabit" layoutX="238.0" layoutY="274.0" text="0">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font></Label>
-                  <Label fx:id="LabelTask" layoutX="307.0" layoutY="309.0" text="0">
+                  <Label fx:id="LabelTask" layoutX="238.0" layoutY="309.0" text="0">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font></Label>
-                  <Label fx:id="LabelAchiev" layoutX="307.0" layoutY="341.0" text="0">
+                  <Label fx:id="LabelAchiev" layoutX="238.0" layoutY="341.0" text="0">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font></Label>
