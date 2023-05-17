@@ -109,6 +109,7 @@ public class Controller {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Додати завдання");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/pics/logo.png")));
         stage.setScene(scene);
 
         AddTaskController addTaskController = loader.getController();
@@ -135,6 +136,7 @@ public class Controller {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Додати звичку");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/pics/logo.png")));
         stage.setScene(scene);
 
         AddHabitController addHabitController = loader.getController();
@@ -161,6 +163,7 @@ public class Controller {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Додати звичку");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/pics/logo.png")));
         stage.setScene(scene);
 
         AddDailyController addDailyController = loader.getController();
