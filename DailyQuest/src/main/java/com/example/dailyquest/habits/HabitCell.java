@@ -20,14 +20,16 @@ public class HabitCell extends ListCell<Habit> {
     private final Text habitNameText;
     private final Text habitDifficultyText;
     private final ObservableList<Habit> habitList;
+    private final Label LabelHabit;
     private Controller controller;
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
-    private static int completedHabit = 0;
-    public HabitCell(ObservableList<Habit> habitList, Controller controller) {
+    public static int completedHabit = 0;
+    public HabitCell(ObservableList<Habit> habitList, Controller controller,Label LabelHabit) {
         this.habitList = habitList;
         this.controller = controller;
+        this.LabelHabit = LabelHabit;
 
         habitNameText = new Text();
         habitDifficultyText = new Text();
@@ -88,6 +90,9 @@ public class HabitCell extends ListCell<Habit> {
                 alert.setHeaderText("Вітаю з новим виконанним досягненням");
                 alert.setContentText("Ви виконали 30 звичок");
                 alert.showAndWait();
+            }
+            if (LabelHabit != null) {
+                LabelHabit.setText(""+completedHabit);
             }
         });
 

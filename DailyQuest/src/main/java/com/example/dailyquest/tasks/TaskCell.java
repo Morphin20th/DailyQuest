@@ -25,7 +25,7 @@ public class TaskCell extends ListCell<Task> {
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
-    private static int completedTask = 0;
+    public static int completedTask = 0;
 
     public TaskCell(ObservableList<Task> taskList, Controller controller,int level,Label LabelTask) {
         this.taskList = taskList;
@@ -106,6 +106,7 @@ public class TaskCell extends ListCell<Task> {
             if (LabelTask != null) {
                 LabelTask.setText(""+completedTask);
             }
+
 
         });
 

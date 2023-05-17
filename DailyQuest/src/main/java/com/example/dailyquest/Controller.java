@@ -27,7 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//import static com.example.dailyquest.tasks.TaskCell.completedTask;
+import static com.example.dailyquest.daily.DailyCell.completedDaily;
+import static com.example.dailyquest.habits.HabitCell.completedHabit;
+import static com.example.dailyquest.tasks.TaskCell.completedTask;
 
 public class Controller {
     private Stage stage;
@@ -148,7 +150,7 @@ public class Controller {
             ObservableList<Habit> items = FXCollections.observableArrayList(habitList);
             habitListView.setItems(items);
             habitListView.refresh();
-            habitListView.setCellFactory(param -> new HabitCell(items,this));
+            habitListView.setCellFactory(param -> new HabitCell(items,this,LabelHabit));
         }
     }
     public void newDaily(ActionEvent event) throws Exception {
@@ -174,7 +176,7 @@ public class Controller {
             ObservableList<Daily> items = FXCollections.observableArrayList(dailyList);
             dailyListView.setItems(items);
             dailyListView.refresh();
-            dailyListView.setCellFactory(param -> new DailyCell(items,this));
+            dailyListView.setCellFactory(param -> new DailyCell(items,this, LabelDaily));
         }
     }
 
@@ -365,12 +367,12 @@ public class Controller {
             ObservableList<Habit> loadhabits = FXCollections.observableArrayList(habitList);
             habitListView.setItems(loadhabits);
             habitListView.refresh();
-            habitListView.setCellFactory(param -> new HabitCell(loadhabits, this));
+            habitListView.setCellFactory(param -> new HabitCell(loadhabits, this,LabelHabit));
 
             ObservableList<Daily> loaddaily = FXCollections.observableArrayList(dailyList);
             dailyListView.setItems(loaddaily);
             dailyListView.refresh();
-            dailyListView.setCellFactory(param -> new DailyCell(loaddaily, this));
+            dailyListView.setCellFactory(param -> new DailyCell(loaddaily, this,LabelDaily));
 
             //обновляем данные профиля
             levelLabel.setText("Рівень: "+ level);
@@ -386,11 +388,17 @@ public class Controller {
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Ошибка при загрузке данных из файла: " + e.getMessage());
         }
-        /*if (LabelTask != null) {
+        if (LabelTask != null) {
             LabelTask.setText(""+completedTask);
-        }*/
+        }
         if (LabelAchiev != null) {
             LabelAchiev.setText(""+achievementsCount);
+        }
+        if (LabelHabit != null) {
+            LabelHabit.setText(""+completedHabit);
+        }
+        if (LabelDaily != null) {
+            LabelDaily.setText(""+completedDaily);
         }
     }
 
