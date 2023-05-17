@@ -20,15 +20,17 @@ public class TaskCell extends ListCell<Task> {
     private final Text taskNameText;
     private final Text taskDifficultyText;
     private final ObservableList<Task> taskList;
+    private final Label LabelTask;
     private Controller controller;
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
     private static int completedTask = 0;
 
-    public TaskCell(ObservableList<Task> taskList, Controller controller,int level) {
+    public TaskCell(ObservableList<Task> taskList, Controller controller,int level,Label LabelTask) {
         this.taskList = taskList;
         this.controller = controller;
+        this.LabelTask = LabelTask;
 
         taskNameText = new Text();
         taskDifficultyText = new Text();
@@ -101,6 +103,10 @@ public class TaskCell extends ListCell<Task> {
                 alert.setContentText("Ви виконали 15 задач");
                 alert.showAndWait();
             }
+            if (LabelTask != null) {
+                LabelTask.setText(""+completedTask);
+            }
+
         });
 
 

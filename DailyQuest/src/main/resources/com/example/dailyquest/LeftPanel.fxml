@@ -437,6 +437,7 @@
             </AnchorPane>
             <AnchorPane fx:id="profilePane" onDragDetected="#editProfileName" prefHeight="425.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
                <children>
+                  <Label fx:id="LabelDaily" layoutX="260.0" layoutY="276.0" text="Label" />
                   <ImageView fx:id="imageView" fitHeight="140.0" fitWidth="140.0" layoutX="18.0" layoutY="15.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../../pics/player.png" />
@@ -481,6 +482,14 @@
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Button>
+                  <Label layoutX="53.0" layoutY="243.0" text="Характеристики:" />
+                  <Label layoutX="51.0" layoutY="276.0" text="Кількість виконних щоденних справ:" />
+                  <Label layoutX="51.0" layoutY="294.0" text="Кількість виконанних звичок:" />
+                  <Label layoutX="50.0" layoutY="312.0" text="Кількість виконанних завдань:" />
+                  <Label layoutX="50.0" layoutY="330.0" text="Отриманних досягнень:" />
+                  <Label fx:id="LabelHabit" layoutX="260.0" layoutY="294.0" text="Label" />
+                  <Label fx:id="LabelTask" layoutX="260.0" layoutY="312.0" text="Label" />
+                  <Label fx:id="LabelAchiev" layoutX="260.0" layoutY="330.0" text="Label" />
                </children>
             </AnchorPane>
          </children>
