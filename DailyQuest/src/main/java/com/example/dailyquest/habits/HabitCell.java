@@ -92,7 +92,7 @@ public class HabitCell extends ListCell<Habit> {
                 alert.showAndWait();
             }
             if (LabelHabit != null) {
-                LabelHabit.setText(""+completedHabit);
+                LabelHabit.setText(String.valueOf(completedHabit));
             }
         });
 

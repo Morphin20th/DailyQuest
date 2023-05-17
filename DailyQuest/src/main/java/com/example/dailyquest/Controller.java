@@ -338,9 +338,13 @@ public class Controller {
             progress=progressBar.getProgress();
             outputStream.writeDouble(progress);
 
+            //сохраняем стату
+            outputStream.writeInt(completedTask);
+            outputStream.writeInt(completedDaily);
+            outputStream.writeInt(completedHabit);
+            outputStream.writeInt(achievementsCount);
 
-
-
+            System.out.println("Data saved");
         } catch (IOException e) {
             System.err.println("Ошибка при сохранении данных в файл: " + e.getMessage());
         }
@@ -358,6 +362,11 @@ public class Controller {
             profileName = inputStream.readUTF();
             progress = inputStream.readDouble();
 
+            completedTask = inputStream.readInt();
+            completedDaily = inputStream.readInt();
+            completedHabit= inputStream.readInt();
+            achievementsCount = inputStream.readInt();
+
             // Обновляем интерфейс
             ObservableList<Task> loadtasks = FXCollections.observableArrayList(taskList);
             taskListView.setItems(loadtasks);
@@ -374,7 +383,7 @@ public class Controller {
             dailyListView.refresh();
             dailyListView.setCellFactory(param -> new DailyCell(loaddaily, this,LabelDaily));
 
-            //обновляем данные профиля
+            //обновляем уровень и аву
             levelLabel.setText("Рівень: "+ level);
             if(!Objects.equals(pathToImage, "")) {
                 Image profileImage = new Image(pathToImage);
@@ -385,24 +394,21 @@ public class Controller {
             //обновляем имя и прогресбар
             profileNameLabel.setText(profileName);
             progressBar.setProgress(progress);
+
+            //обновляем статистику
+            setProfileStat();
+
+            //обновляем достижения
+            achievementsLabel.setText("Досягнень виконано: "+ achievementsCount +"/9");
+            updateAchievementTask(completedTask);
+            updateAchievementHabit(completedHabit);
+            updateAchievementDaily(completedDaily);
+
+            System.out.println("Data loaded");
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Ошибка при загрузке данных из файла: " + e.getMessage());
         }
-        if (LabelTask != null) {
-            LabelTask.setText(""+completedTask);
-        }
-        if (LabelAchiev != null) {
-            LabelAchiev.setText(""+achievementsCount);
-        }
-        if (LabelHabit != null) {
-            LabelHabit.setText(""+completedHabit);
-        }
-        if (LabelDaily != null) {
-            LabelDaily.setText(""+completedDaily);
-        }
     }
-
-
 
     public void changeAchievLablel(){ //метод для увеличения значения выполненых достижений
         achievementsCount++;
@@ -412,12 +418,13 @@ public class Controller {
         }
     }
 
-    /*public void Labels(){
-        LabelTask.setText(completedTask);
-        LabelDaily.setText(completedTask);
-        LabelHabit.setText(completedTask);
-        LabelAchiev.setText(achievementsCount);
-    }*/
+    public void setProfileStat(){
+        LabelTask.setText(String.valueOf(completedTask));
+        LabelDaily.setText(String.valueOf(completedDaily));
+        LabelHabit.setText(String.valueOf(completedHabit));
+        LabelAchiev.setText(String.valueOf(achievementsCount));
+    }
+
     public void AchievementTask(int completedTask) {
         if (completedTask == 5) {
             achievement1.setStyle("-fx-background-color: rgb(222, 245, 191);");
@@ -493,6 +500,56 @@ public class Controller {
             achievement9.setStyle("");
         }
     }
+
+    public void updateAchievementTask(int completedTask){
+        switch (completedTask){
+            case 5:
+                achievement1.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                break;
+            case 10:
+                achievement1.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                achievement2.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                break;
+            case 15:
+                achievement1.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                achievement2.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                achievement3.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                break;
+        }
+    }
+    public void updateAchievementHabit(int completedHabit){
+        switch (completedHabit){
+            case 10:
+                achievement4.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                break;
+            case 20:
+                achievement4.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                achievement5.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                break;
+            case 30:
+                achievement4.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                achievement5.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                achievement6.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                break;
+        }
+    }
+    public void updateAchievementDaily(int completedDaily){
+        switch (completedDaily){
+            case 5:
+                achievement7.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                break;
+            case 10:
+                achievement7.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                achievement8.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                break;
+            case 15:
+                achievement7.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                achievement8.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                achievement9.setStyle("-fx-background-color: rgb(222, 245, 191);");
+                break;
+        }
+    }
+
     public void achievementProgress() {
         level++;
         levelLabel.setText("Рівень " + level);

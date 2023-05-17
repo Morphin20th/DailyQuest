@@ -81,7 +81,7 @@ public class DailyCell extends ListCell<Daily> {
                 alert.showAndWait();
             }
             if (LabelDaily != null) {
-                LabelDaily.setText(""+completedDaily);
+                LabelDaily.setText(String.valueOf(completedDaily));
             }
         });
 

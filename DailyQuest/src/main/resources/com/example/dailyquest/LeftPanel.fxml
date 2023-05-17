@@ -465,9 +465,9 @@
                   </Button>
                   <TextField fx:id="profileNameField" layoutX="398.0" layoutY="155.0" prefHeight="25.0" prefWidth="177.0" promptText="Нове ім'я" stylesheets="@../../../styling/styling.css" />
                   <ProgressBar fx:id="progressBar" layoutX="185.0" layoutY="131.0" prefHeight="17.0" prefWidth="183.0" progress="0.0" />
-                  <Label fx:id="levelLabel" layoutX="56.0" layoutY="166.0" text="Рівень 1">
+                  <Label fx:id="levelLabel" layoutX="51.0" layoutY="158.0" text="Рівень 1">
                      <font>
-                        <Font name="Corbel Light" size="19.0" />
+                        <Font name="Comic Sans MS Bold Italic" size="19.0" />
                      </font>
                   </Label>
                   <Label layoutX="182.0" layoutY="149.0" text="0" />

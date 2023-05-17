@@ -104,7 +104,7 @@ public class TaskCell extends ListCell<Task> {
                 alert.showAndWait();
             }
             if (LabelTask != null) {
-                LabelTask.setText(""+completedTask);
+                LabelTask.setText(String.valueOf(completedTask));
             }
 
 
