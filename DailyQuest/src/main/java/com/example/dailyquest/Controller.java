@@ -36,6 +36,7 @@ public class Controller {
     @FXML private Label profileNameLabel;
     @FXML private ProgressBar progressBar;
     @FXML private Label levelLabel;
+    @FXML private Label achievementsLabel;
     @FXML private AnchorPane profilePane;
     @FXML private AnchorPane achievementsPane;
     @FXML private AnchorPane taskPane;
@@ -57,6 +58,7 @@ public class Controller {
     String pathToImage = "";
     String profileName = "Ім'я профілю";
     Double progress;
+    Integer achievementsCount = 0;
     private List<Task> taskList = new ArrayList<Task>();
     private List<Habit> habitList = new ArrayList<Habit>();
     private List<Daily> dailyList = new ArrayList<Daily>();
@@ -86,6 +88,7 @@ public class Controller {
             Image image = new Image(selectedFile.toURI().toString());
             pathToImage= selectedFile.toString();
             imageView.setImage(image);
+            imageView.setPreserveRatio(true);
         }
     }
 
@@ -315,21 +318,19 @@ public class Controller {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
             //сохранение списков заданий
             outputStream.writeObject(taskList);
-            System.out.println("Задания сохранены в файл: " + filePath);
             outputStream.writeObject(habitList);
-            System.out.println("Привычки сохранены в файл: " + filePath);
             outputStream.writeObject(dailyList);
-            System.out.println("Ежедневки сохранены в файл: " + filePath);
 
             //сохранения данных профиля
             outputStream.writeInt(level);
             outputStream.writeUTF(pathToImage);
-            System.out.println("Ава и уровень сохранены в файл: " + filePath);
 
             //сохраняем имя и прогресбар
             outputStream.writeUTF(profileName);
             progress=progressBar.getProgress();
             outputStream.writeDouble(progress);
+
+
 
 
         } catch (IOException e) {
@@ -341,17 +342,11 @@ public class Controller {
         String filePath = saveDirectory + File.separator + "tasks.dat";
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath))) {
             taskList = (List<Task>) inputStream.readObject();
-            System.out.println("Задания загружены из файла: " + filePath);
-
             habitList = (List<Habit>) inputStream.readObject();
-            System.out.println("Привычки загружены из файла: " + filePath);
-
             dailyList = (List<Daily>) inputStream.readObject();
-            System.out.println("Ежедневки загружены из файла: " + filePath);
 
             level = inputStream.readInt();
             pathToImage = inputStream.readUTF();
-
             profileName = inputStream.readUTF();
             progress = inputStream.readDouble();
 
@@ -376,6 +371,7 @@ public class Controller {
             if(!Objects.equals(pathToImage, "")) {
                 Image profileImage = new Image(pathToImage);
                 imageView.setImage(profileImage);
+                imageView.setPreserveRatio(true);
             }
 
             //обновляем имя и прогресбар
@@ -386,59 +382,83 @@ public class Controller {
         }
     }
 
+
+
+    public void changeAchievLablel(){ //метод для увеличения значения выполненых достижений
+        achievementsCount++;
+        achievementsLabel.setText("Досягнень виконано: "+ achievementsCount +"/9");
+    }
     public void AchievementTask(int completedTask) {
-        if (completedTask >= 5) {
+        if (completedTask == 5) {
             achievement1.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            changeAchievLablel();
         } else {
             achievement1.setStyle("");
         }
 
-        if (completedTask >= 10) {
+        if (completedTask == 10) {
+            achievement1.setStyle("-fx-background-color: rgb(222, 245, 191);");
             achievement2.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            changeAchievLablel();
         } else {
             achievement2.setStyle("");
         }
 
-        if (completedTask >= 15) {
+        if (completedTask == 15) {
+            achievement1.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            achievement2.setStyle("-fx-background-color: rgb(222, 245, 191);");
             achievement3.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            changeAchievLablel();
         } else {
             achievement3.setStyle("");
         }
     }
     public void AchievementHabit(int completedHabit) {
-        if (completedHabit >= 10) {
+        if (completedHabit == 10) {
             achievement4.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            changeAchievLablel();
         } else {
             achievement4.setStyle("");
         }
 
-        if (completedHabit >= 20) {
+        if (completedHabit == 20) {
+            achievement4.setStyle("-fx-background-color: rgb(222, 245, 191);");
             achievement5.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            changeAchievLablel();
         } else {
             achievement5.setStyle("");
         }
 
-        if (completedHabit >= 30) {
+        if (completedHabit == 30) {
+            achievement4.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            achievement5.setStyle("-fx-background-color: rgb(222, 245, 191);");
             achievement6.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            changeAchievLablel();
         } else {
             achievement6.setStyle("");
         }
     }
     public void AchievementDaily(int completedDaily) {
-        if (completedDaily >= 5) {
+        if (completedDaily == 5) {
             achievement7.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            changeAchievLablel();
         } else {
             achievement7.setStyle("");
         }
 
-        if (completedDaily >= 10) {
+        if (completedDaily == 10) {
+            achievement7.setStyle("-fx-background-color: rgb(222, 245, 191);");
             achievement8.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            changeAchievLablel();
         } else {
             achievement8.setStyle("");
         }
 
-        if (completedDaily >= 15) {
+        if (completedDaily == 15) {
+            achievement7.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            achievement8.setStyle("-fx-background-color: rgb(222, 245, 191);");
             achievement9.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            changeAchievLablel();
         } else {
             achievement9.setStyle("");
         }

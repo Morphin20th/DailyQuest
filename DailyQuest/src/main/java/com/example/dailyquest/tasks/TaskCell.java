@@ -72,7 +72,7 @@ public class TaskCell extends ListCell<Task> {
             doneButton.setDisable(true);
 
             // Изменяем цвет HBox на заданный
-            this.setStyle("-fx-background-color: rgb(222, 245, 191);");
+            this.setStyle(task.getHBoxColor());
 
             System.out.println("Завдання виконано? : "+ task.isCompleted());
             controller.AchievementTask(completedTask);
@@ -139,7 +139,7 @@ public class TaskCell extends ListCell<Task> {
             } else {
                 doneButton.setDisable(false);
             }
-            this.setStyle(task.getHBoxColor());
+           this.setStyle(task.getHBoxColor());
 
         }
 

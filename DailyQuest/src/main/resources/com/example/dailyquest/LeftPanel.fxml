@@ -218,18 +218,26 @@
             </AnchorPane>
             <AnchorPane fx:id="achievementsPane" prefHeight="403.0" prefWidth="580.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <ScrollPane layoutX="-1.0" layoutY="28.0" prefHeight="414.0" prefWidth="602.0">
+                  <ScrollPane layoutY="67.0" prefHeight="375.0" prefWidth="601.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="547.0" prefWidth="586.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="571.0" prefWidth="586.0">
                            <children>
                               <HBox fx:id="achievement1" prefHeight="61.0" prefWidth="587.0">
                                  <children>
-                                    <Label prefHeight="32.0" prefWidth="202.0" text="Новачок">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../pics/task1.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="71.0" prefWidth="202.0" text="Новачок">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="18.0" prefWidth="110.0" text="Виконати 5 завдань" />
+                                    <Label prefHeight="63.0" prefWidth="110.0" text="Виконати 5 завдань" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -237,12 +245,20 @@
                               </HBox>
                               <HBox fx:id="achievement2" layoutX="-1.0" layoutY="62.0" prefHeight="61.0" prefWidth="587.0">
                                  <children>
-                                    <Label prefHeight="32.0" prefWidth="202.0" text="Ретельний працівник">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../pics/task2.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="66.0" prefWidth="202.0" text="Ретельний працівник">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="18.0" prefWidth="130.0" text="Виконати 10 завдань" />
+                                    <Label prefHeight="66.0" prefWidth="130.0" text="Виконати 10 завдань" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -250,12 +266,20 @@
                               </HBox>
                               <HBox fx:id="achievement3" layoutY="124.0" prefHeight="61.0" prefWidth="587.0">
                                  <children>
-                                    <Label prefHeight="32.0" prefWidth="202.0" text="Майстер завдань">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../pics/task3.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="63.0" prefWidth="202.0" text="Майстер завдань">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="18.0" prefWidth="123.0" text="Виконати 15 завдань" />
+                                    <Label prefHeight="62.0" prefWidth="123.0" text="Виконати 15 завдань" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -263,12 +287,20 @@
                               </HBox>
                               <HBox fx:id="achievement4" layoutX="-1.0" layoutY="196.0" prefHeight="61.0" prefWidth="587.0">
                                  <children>
-                                    <Label prefHeight="32.0" prefWidth="202.0" text="Ініціативний">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../pics/habit1.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="71.0" prefWidth="202.0" text="Ініціативний">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="18.0" prefWidth="122.0" text="Виконати 10 звичок" />
+                                    <Label prefHeight="66.0" prefWidth="122.0" text="Виконати 10 звичок" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -276,12 +308,20 @@
                               </HBox>
                               <HBox fx:id="achievement5" layoutY="258.0" prefHeight="61.0" prefWidth="587.0">
                                  <children>
-                                    <Label prefHeight="32.0" prefWidth="202.0" text="Звичколюб">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../pics/habit2.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="66.0" prefWidth="202.0" text="Звичколюб">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="18.0" prefWidth="124.0" text="Виконати 20 звичок" />
+                                    <Label prefHeight="63.0" prefWidth="124.0" text="Виконати 20 звичок" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -289,12 +329,20 @@
                               </HBox>
                               <HBox fx:id="achievement6" layoutY="320.0" prefHeight="61.0" prefWidth="587.0">
                                  <children>
-                                    <Label prefHeight="32.0" prefWidth="202.0" text="Звичкоман">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../pics/habit3.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="63.0" prefWidth="202.0" text="Звичкоман">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="18.0" prefWidth="122.0" text="Виконати 30 звичок" />
+                                    <Label prefHeight="62.0" prefWidth="122.0" text="Виконати 30 звичок" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -302,12 +350,20 @@
                               </HBox>
                               <HBox fx:id="achievement7" layoutX="-1.0" layoutY="382.0" prefHeight="61.0" prefWidth="587.0">
                                  <children>
-                                    <Label prefHeight="32.0" prefWidth="202.0" text="Старанний">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../pics/daily1.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="64.0" prefWidth="202.0" text="Старанний">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="18.0" prefWidth="165.0" text="Виконати 5 щоденних справ" />
+                                    <Label prefHeight="68.0" prefWidth="165.0" text="Виконати 5 щоденних справ" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -315,12 +371,20 @@
                               </HBox>
                               <HBox fx:id="achievement8" layoutX="-1.0" layoutY="444.0" prefHeight="61.0" prefWidth="587.0">
                                  <children>
-                                    <Label prefHeight="32.0" prefWidth="202.0" text="Цілеспрямований">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../pics/daily2.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="62.0" prefWidth="202.0" text="Цілеспрямований">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="18.0" prefWidth="191.0" text="Виконати 10 щоденних справ" />
+                                    <Label prefHeight="65.0" prefWidth="191.0" text="Виконати 10 щоденних справ" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -328,12 +392,20 @@
                               </HBox>
                               <HBox fx:id="achievement9" layoutX="-1.0" layoutY="506.0" prefHeight="61.0" prefWidth="587.0">
                                  <children>
-                                    <Label prefHeight="32.0" prefWidth="202.0" text="Невтомний">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../pics/daily3.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="66.0" prefWidth="202.0" text="Невтомний">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="18.0" prefWidth="178.0" text="Виконати 15 щоденних справ" />
+                                    <Label prefHeight="70.0" prefWidth="178.0" text="Виконати 15 щоденних справ" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
@@ -343,6 +415,18 @@
                         </AnchorPane>
                     </content>
                   </ScrollPane>
+                  <HBox layoutX="-1.0" prefHeight="67.0" prefWidth="602.0">
+                     <children>
+                        <Label fx:id="achievementsLabel" alignment="CENTER" prefHeight="67.0" prefWidth="608.0" text="Досягнень виконано: 0/9">
+                           <font>
+                              <Font name="Comic Sans MS" size="27.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
                <StackPane.margin>
                   <Insets />
@@ -353,9 +437,9 @@
             </AnchorPane>
             <AnchorPane fx:id="profilePane" onDragDetected="#editProfileName" prefHeight="425.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <ImageView fx:id="imageView" fitHeight="173.0" fitWidth="162.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageView" fitHeight="140.0" fitWidth="140.0" layoutX="18.0" layoutY="15.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../../../pics/player.jpg" />
+                        <Image url="@../../../pics/player.png" />
                      </image>
                   </ImageView>
                   <Button layoutX="397.0" layoutY="60.0" mnemonicParsing="false" onAction="#ChooseImage" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Змінити зображення аватару" textFill="#573928">
