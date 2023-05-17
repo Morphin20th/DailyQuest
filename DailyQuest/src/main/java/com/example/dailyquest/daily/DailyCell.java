@@ -13,19 +13,23 @@ import javafx.util.Duration;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+import static com.example.dailyquest.habits.HabitCell.completedHabit;
+
 public class DailyCell extends ListCell<Daily> {
     private final Button doneButton;
     private final Button deleteButton;
     private final Text dailyNameText;
     private final ObservableList<Daily> dailyList;
+    private final Label LabelDaily;
     private Controller controller;
 
     private final Label bonusLabel;
     private final FadeTransition fadeTransition;
-    private static int completedDaily = 0;
-    public DailyCell(ObservableList<Daily> dailyList, Controller controller) {
+    public static int completedDaily = 0;
+    public DailyCell(ObservableList<Daily> dailyList, Controller controller,Label LabelDaily) {
         this.dailyList = dailyList;
         this.controller = controller;
+        this.LabelDaily = LabelDaily;
 
         dailyNameText = new Text();
 
@@ -76,6 +80,9 @@ public class DailyCell extends ListCell<Daily> {
                 alert.setContentText("Ви виконали 15 щоденних справ");
                 alert.showAndWait();
             }
+            if (LabelDaily != null) {
+                LabelDaily.setText(""+completedDaily);
+            }
         });
 
 
@@ -89,6 +96,7 @@ public class DailyCell extends ListCell<Daily> {
         hbox.setSpacing(10);
 
         setGraphic(new HBox(hbox, bonusLabel));
+
     }
 
     @Override
