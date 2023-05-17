@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="scenePane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dailyquest.Controller">
@@ -481,6 +482,7 @@
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Button>
+                  <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#1f93ff00" height="145.0" layoutX="16.0" layoutY="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="145.0" />
                </children>
             </AnchorPane>
          </children>
