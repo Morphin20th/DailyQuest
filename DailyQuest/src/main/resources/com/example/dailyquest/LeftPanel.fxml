@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -438,13 +439,16 @@
             </AnchorPane>
             <AnchorPane fx:id="profilePane" onDragDetected="#editProfileName" prefHeight="425.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Label fx:id="LabelDaily" layoutX="260.0" layoutY="276.0" text="Label" />
+                  <Label fx:id="LabelDaily" layoutX="307.0" layoutY="240.0" text="0">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
                   <ImageView fx:id="imageView" fitHeight="140.0" fitWidth="140.0" layoutX="18.0" layoutY="15.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../../pics/player.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="397.0" layoutY="60.0" mnemonicParsing="false" onAction="#ChooseImage" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Змінити зображення аватару" textFill="#573928">
+                  <Button layoutX="398.0" layoutY="115.0" mnemonicParsing="false" onAction="#ChooseImage" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Змінити зображення аватару" textFill="#573928">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
@@ -454,14 +458,14 @@
                         <Font name="Comic Sans MS" size="26.0" />
                      </font>
                   </Label>
-                  <Button layoutX="397.0" layoutY="125.0" mnemonicParsing="false" onAction="#editProfileName" prefHeight="25.0" prefWidth="177.0" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Змінити ім'я профілю" textFill="#573928">
+                  <Button layoutX="398.0" layoutY="180.0" mnemonicParsing="false" onAction="#editProfileName" prefHeight="25.0" prefWidth="177.0" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Змінити ім'я профілю" textFill="#573928">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="profileNameField" layoutX="397.0" layoutY="100.0" prefHeight="25.0" prefWidth="177.0" promptText="Нове ім'я" stylesheets="@../../../styling/styling.css" />
+                  <TextField fx:id="profileNameField" layoutX="398.0" layoutY="155.0" prefHeight="25.0" prefWidth="177.0" promptText="Нове ім'я" stylesheets="@../../../styling/styling.css" />
                   <ProgressBar fx:id="progressBar" layoutX="185.0" layoutY="131.0" prefHeight="17.0" prefWidth="183.0" progress="0.0" />
-                  <Label fx:id="levelLabel" layoutX="56.0" layoutY="155.0" text="Рівень 1">
+                  <Label fx:id="levelLabel" layoutX="56.0" layoutY="166.0" text="Рівень 1">
                      <font>
                         <Font name="Corbel Light" size="19.0" />
                      </font>
@@ -473,25 +477,61 @@
                         <Font name="Comic Sans MS Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Button layoutX="397.0" layoutY="181.0" mnemonicParsing="false" onAction="#saveTask" prefHeight="25.0" prefWidth="177.0" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Зберегти прогрес" textFill="#573928">
+                  <Button layoutX="398.0" layoutY="236.0" mnemonicParsing="false" onAction="#saveTask" prefHeight="25.0" prefWidth="177.0" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Зберегти прогрес" textFill="#573928">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="397.0" layoutY="216.0" mnemonicParsing="false" onAction="#loadTasksFromFile" prefHeight="25.0" prefWidth="177.0" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Завантажити файл" textFill="#573928">
+                  <Button layoutX="398.0" layoutY="271.0" mnemonicParsing="false" onAction="#loadTasksFromFile" prefHeight="25.0" prefWidth="177.0" styleClass="button2" stylesheets="@../../../styling/styling.css" text="Завантажити файл" textFill="#573928">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Button>
-                  <Label layoutX="53.0" layoutY="243.0" text="Характеристики:" />
-                  <Label layoutX="51.0" layoutY="276.0" text="Кількість виконних щоденних справ:" />
-                  <Label layoutX="51.0" layoutY="294.0" text="Кількість виконанних звичок:" />
-                  <Label layoutX="50.0" layoutY="312.0" text="Кількість виконанних завдань:" />
-                  <Label layoutX="50.0" layoutY="330.0" text="Отриманних досягнень:" />
-                  <Label fx:id="LabelHabit" layoutX="260.0" layoutY="294.0" text="Label" />
-                  <Label fx:id="LabelTask" layoutX="260.0" layoutY="312.0" text="Label" />
-                  <Label fx:id="LabelAchiev" layoutX="260.0" layoutY="330.0" text="Label" />
+                  <Label layoutX="70.0" layoutY="205.0" text="Статистика вашого профілю:">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+                  <Label layoutX="18.0" layoutY="240.0" text="Кількість виконних щоденних справ:">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+                  <Label layoutX="18.0" layoutY="274.0" text="Кількість виконанних звичок:">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+                  <Label layoutX="18.0" layoutY="309.0" text="Кількість виконанних завдань:">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+                  <Label layoutX="18.0" layoutY="341.0" text="Отриманних досягнень:">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+                  <Label fx:id="LabelHabit" layoutX="307.0" layoutY="274.0" text="0">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+                  <Label fx:id="LabelTask" layoutX="307.0" layoutY="309.0" text="0">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
+                  <Label fx:id="LabelAchiev" layoutX="307.0" layoutY="341.0" text="0">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font></Label>
                   <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#1f93ff00" height="145.0" layoutX="16.0" layoutY="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="145.0" />
+                  <Separator layoutX="383.0" layoutY="1.0" orientation="VERTICAL" prefHeight="434.0" prefWidth="8.0" />
+                  <Separator layoutY="192.0" prefHeight="0.0" prefWidth="385.0" />
+                  <Label alignment="BOTTOM_CENTER" layoutX="383.0" layoutY="14.0" prefHeight="30.0" prefWidth="212.0" text="Налаштування" textFill="#403f3f" textOverrun="CLIP">
+                     <font>
+                        <Font name="Comic Sans MS" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" layoutX="383.0" layoutY="41.0" prefHeight="42.0" prefWidth="207.0" text="профілю" textFill="#403f3f">
+                     <font>
+                        <Font name="Comic Sans MS" size="19.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
