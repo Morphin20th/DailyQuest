@@ -75,7 +75,7 @@ public class Controller {
         if (profileName.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Помилка");
-            alert.setContentText("Строка Ім'я профіля не може бути порожньою");
+            alert.setContentText("Поле для імені не може бути порожнім");
             alert.showAndWait();
         } else {
             profileNameLabel.setText(profileName);
@@ -322,91 +322,105 @@ public class Controller {
     String userHome = System.getProperty("user.home");
     String saveDirectory = userHome + File.separator + "Desktop";
     public void saveTask() {
-        String filePath = saveDirectory + File.separator + "tasks.dat";
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
-            //сохранение списков заданий
-            outputStream.writeObject(taskList);
-            outputStream.writeObject(habitList);
-            outputStream.writeObject(dailyList);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Збереження");
+        alert.setHeaderText("Ви збираєтесь зберегти прогрес.\nФайл збереження буде перезаписаний");
+        alert.setContentText("Ви впевнені?");
 
-            //сохранения данных профиля
-            outputStream.writeInt(level);
-            outputStream.writeUTF(pathToImage);
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            String filePath = saveDirectory + File.separator + "tasks.dat";
+            try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
+                //сохранение списков заданий
+                outputStream.writeObject(taskList);
+                outputStream.writeObject(habitList);
+                outputStream.writeObject(dailyList);
 
-            //сохраняем имя и прогресбар
-            outputStream.writeUTF(profileName);
-            progress=progressBar.getProgress();
-            outputStream.writeDouble(progress);
+                //сохранения данных профиля
+                outputStream.writeInt(level);
+                outputStream.writeUTF(pathToImage);
 
-            //сохраняем стату
-            outputStream.writeInt(completedTask);
-            outputStream.writeInt(completedDaily);
-            outputStream.writeInt(completedHabit);
-            outputStream.writeInt(achievementsCount);
+                //сохраняем имя и прогресбар
+                outputStream.writeUTF(profileName);
+                progress = progressBar.getProgress();
+                outputStream.writeDouble(progress);
 
-            System.out.println("Data saved");
-        } catch (IOException e) {
-            System.err.println("Ошибка при сохранении данных в файл: " + e.getMessage());
+                //сохраняем стату
+                outputStream.writeInt(completedTask);
+                outputStream.writeInt(completedDaily);
+                outputStream.writeInt(completedHabit);
+                outputStream.writeInt(achievementsCount);
+
+                System.out.println("Data saved");
+            } catch (IOException e) {
+                System.err.println("Ошибка при сохранении данных в файл: " + e.getMessage());
+            }
         }
     }
 
     public void loadTasksFromFile() {
-        String filePath = saveDirectory + File.separator + "tasks.dat";
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath))) {
-            taskList = (List<Task>) inputStream.readObject();
-            habitList = (List<Habit>) inputStream.readObject();
-            dailyList = (List<Daily>) inputStream.readObject();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Завантаження збережень");
+        alert.setHeaderText("Ви збираєтесь завантажити збережений прогрес.\nПоточні дані будуть перезаписані");
+        alert.setContentText("Ви впевнені?");
 
-            level = inputStream.readInt();
-            pathToImage = inputStream.readUTF();
-            profileName = inputStream.readUTF();
-            progress = inputStream.readDouble();
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            String filePath = saveDirectory + File.separator + "tasks.dat";
+            try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath))) {
+                taskList = (List<Task>) inputStream.readObject();
+                habitList = (List<Habit>) inputStream.readObject();
+                dailyList = (List<Daily>) inputStream.readObject();
 
-            completedTask = inputStream.readInt();
-            completedDaily = inputStream.readInt();
-            completedHabit= inputStream.readInt();
-            achievementsCount = inputStream.readInt();
+                level = inputStream.readInt();
+                pathToImage = inputStream.readUTF();
+                profileName = inputStream.readUTF();
+                progress = inputStream.readDouble();
 
-            // Обновляем интерфейс
-            ObservableList<Task> loadtasks = FXCollections.observableArrayList(taskList);
-            taskListView.setItems(loadtasks);
-            taskListView.refresh();
-            taskListView.setCellFactory(param -> new TaskCell(loadtasks, this,level,LabelTask));
+                completedTask = inputStream.readInt();
+                completedDaily = inputStream.readInt();
+                completedHabit = inputStream.readInt();
+                achievementsCount = inputStream.readInt();
 
-            ObservableList<Habit> loadhabits = FXCollections.observableArrayList(habitList);
-            habitListView.setItems(loadhabits);
-            habitListView.refresh();
-            habitListView.setCellFactory(param -> new HabitCell(loadhabits, this,LabelHabit));
+                // Обновляем интерфейс
+                ObservableList<Task> loadtasks = FXCollections.observableArrayList(taskList);
+                taskListView.setItems(loadtasks);
+                taskListView.refresh();
+                taskListView.setCellFactory(param -> new TaskCell(loadtasks, this, level, LabelTask));
 
-            ObservableList<Daily> loaddaily = FXCollections.observableArrayList(dailyList);
-            dailyListView.setItems(loaddaily);
-            dailyListView.refresh();
-            dailyListView.setCellFactory(param -> new DailyCell(loaddaily, this,LabelDaily));
+                ObservableList<Habit> loadhabits = FXCollections.observableArrayList(habitList);
+                habitListView.setItems(loadhabits);
+                habitListView.refresh();
+                habitListView.setCellFactory(param -> new HabitCell(loadhabits, this, LabelHabit));
 
-            //обновляем уровень и аву
-            levelLabel.setText("Рівень: "+ level);
-            if(!Objects.equals(pathToImage, "")) {
-                Image profileImage = new Image(pathToImage);
-                imageView.setImage(profileImage);
-                imageView.setPreserveRatio(true);
+                ObservableList<Daily> loaddaily = FXCollections.observableArrayList(dailyList);
+                dailyListView.setItems(loaddaily);
+                dailyListView.refresh();
+                dailyListView.setCellFactory(param -> new DailyCell(loaddaily, this, LabelDaily));
+
+                //обновляем уровень и аву
+                levelLabel.setText("Рівень: " + level);
+                if (!Objects.equals(pathToImage, "")) {
+                    Image profileImage = new Image(pathToImage);
+                    imageView.setImage(profileImage);
+                    imageView.setPreserveRatio(true);
+                }
+
+                //обновляем имя и прогресбар
+                profileNameLabel.setText(profileName);
+                progressBar.setProgress(progress);
+
+                //обновляем статистику
+                setProfileStat();
+
+                //обновляем достижения
+                achievementsLabel.setText("Досягнень виконано: " + achievementsCount + "/9");
+                updateAchievementTask(completedTask);
+                updateAchievementHabit(completedHabit);
+                updateAchievementDaily(completedDaily);
+
+                System.out.println("Data loaded");
+            } catch (IOException | ClassNotFoundException e) {
+                System.err.println("Ошибка при загрузке данных из файла: " + e.getMessage());
             }
-
-            //обновляем имя и прогресбар
-            profileNameLabel.setText(profileName);
-            progressBar.setProgress(progress);
-
-            //обновляем статистику
-            setProfileStat();
-
-            //обновляем достижения
-            achievementsLabel.setText("Досягнень виконано: "+ achievementsCount +"/9");
-            updateAchievementTask(completedTask);
-            updateAchievementHabit(completedHabit);
-            updateAchievementDaily(completedDaily);
-
-            System.out.println("Data loaded");
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Ошибка при загрузке данных из файла: " + e.getMessage());
         }
     }
 

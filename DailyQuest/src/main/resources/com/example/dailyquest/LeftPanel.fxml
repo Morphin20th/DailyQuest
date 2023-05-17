@@ -453,7 +453,7 @@
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Button>
-                  <Label fx:id="profileNameLabel" layoutX="182.0" layoutY="48.0" text="Ім'я профілю">
+                  <Label fx:id="profileNameLabel" layoutX="183.0" layoutY="41.0" text="Ім'я профілю">
                      <font>
                         <Font name="Comic Sans MS" size="26.0" />
                      </font>
@@ -464,15 +464,15 @@
                      </font>
                   </Button>
                   <TextField fx:id="profileNameField" layoutX="398.0" layoutY="155.0" prefHeight="25.0" prefWidth="177.0" promptText="Нове ім'я" stylesheets="@../../../styling/styling.css" />
-                  <ProgressBar fx:id="progressBar" layoutX="185.0" layoutY="131.0" prefHeight="17.0" prefWidth="183.0" progress="0.0" />
+                  <ProgressBar fx:id="progressBar" layoutX="186.0" layoutY="124.0" prefHeight="17.0" prefWidth="183.0" progress="0.0" />
                   <Label fx:id="levelLabel" layoutX="51.0" layoutY="158.0" text="Рівень 1">
                      <font>
                         <Font name="Comic Sans MS Bold Italic" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="182.0" layoutY="149.0" text="0" />
-                  <Label layoutX="362.0" layoutY="149.0" text="50" />
-                  <Label layoutX="189.0" layoutY="102.0" text="Прогрес досвіду:" textFill="#757373">
+                  <Label layoutX="183.0" layoutY="142.0" text="0" />
+                  <Label layoutX="363.0" layoutY="142.0" text="50" />
+                  <Label layoutX="190.0" layoutY="95.0" text="Прогрес досвіду:" textFill="#757373">
                      <font>
                         <Font name="Comic Sans MS Italic" size="15.0" />
                      </font>
